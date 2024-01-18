@@ -1,33 +1,83 @@
 <html>
-  <body>
-    <select id="assignment-edit">
-      <option value="assignment-edit">SpeedGrader</option>
-    </select>
-    <hr />
-    <h2>Assignment Name</h2>
-    <form id="textarea">
-      <input type="text" placeholder="A1 - ENV + HTML"/>
-      <p></p>
-      <textarea >This is is the assignment description</textarea> 
-      <br/>
-      <label>Points</label><br />
-      <input type="text" placeholder="100"/>
-      <br/>
-      <label>Assignment Group</label> <br />
-      <select id="assignment-edit">
-        <option value="assignment-edit-group">ASSIGNMENTS</option>
-      </select>
-      <br/>
-      <label>Display Grade as</label> <br />
-      <select id="assignment-edit">
-        <option value="assignment-edit-percentage">Percentage</option>
-      </select>
-      <br />
-      <label>Submission Type</label> <br />
-      <select id="assignment-edit">
-        <option value="assignment-edit-submission">Online</option>
-      </select>
 
-    </form>
-  </body>
+<body>
+  <select id="assignment-edit">
+    <option value="assignment-edit">SpeedGrader</option>
+  </select>
+  <hr />
+  <h2>Assignment Name</h2>
+  <form id="textarea">
+    <input type="text" placeholder="A1 - ENV + HTML" />
+    <p></p>
+    <textarea>This is is the assignment description</textarea>
+    <br />
+    <label>Points</label><br />
+    <input type="text" placeholder="100" />
+    <br />
+    <label>Assignment Group</label> <br />
+    <select id="assignment-edit">
+      <option value="assignment-edit-group">ASSIGNMENTS</option>
+    </select>
+    <br />
+    <label>Display Grade as</label> <br />
+    <select id="assignment-edit">
+      <option value="assignment-edit-percentage">Percentage</option>
+    </select>
+    <br />
+    <label>Submission Type</label> <br />
+    <select id="assignment-edit">
+      <option value="assignment-edit-submission">Online</option>
+    </select>
+    <br />
+    <label>Online Entry Options</label>
+    <br />
+    <input type="checkbox" value="Text Entry" name="check-online-entry" id="chkbox-text-entry" />
+    <label for="chkbox-comedy">Text Entry</label>
+    <br />
+    <input type="checkbox" value="Website URL" name="check-online-entry" id="chkbox-website-url" />
+    <label for="chkbox-comedy">Website URL</label>
+    <br />
+    <input type="checkbox" value="Media Recordings" name="check-online-entry" id="chkbox-media-recordings" />
+    <label for="chkbox-comedy">Media Recordings</label>
+    <br />
+    <input type="checkbox" value="Student Annotation" name="check-online-entry" id="chkbox-student-annotation" />
+    <label for="chkbox-comedy">Student Annotation</label>
+    <br />
+    <input type="checkbox" value="File Uploads" name="check-online-entry" id="chkbox-file-uploads" />
+    <label for="chkbox-comedy">File Uploads</label>
+    <br />
+    <br />
+    <label>
+      Assign
+    </label>
+    <br />
+    <label>Assign to</label>
+    <br />
+    <input type="text" placeholder="Everyone" />
+    <br />
+    <br />
+    <label>Due</label>
+    <br />
+    <input type="date" placeholder="01/01/2021"/>
+    <br/>
+    <br />
+
+    <label>Available from</label>
+    <br />
+    <input type="date" placeholder="01/01/2021"/>
+    <br/>
+    <br />
+    <label>Until</label>
+    <br />
+    <input type="date" placeholder="01/01/2021"/>
+    <br/>
+    <br />
+    <form action="../screen.html">
+    <button type="button" onclick="">Cancel</button>
+    <form action="../screen.html">
+    <button type="button">Save</button>
+
+  </form>
+</body>
+
 </html>
