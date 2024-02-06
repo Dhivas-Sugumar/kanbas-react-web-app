@@ -4,153 +4,97 @@
   <link rel="stylesheet" href="../../styles.css" />
   <link rel="stylesheet" href="../../Navigation/index.css" />
   <link rel="stylesheet" href="../../../libs/font-awesome/css/font-awesome.min.css" />
-  <script>
-    fetch('../../Navigation/index.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('main-navigation').innerHTML = html;
-        })
-        .catch(error => console.error('Error fetching HTML:', error));
-</script>
+  <link rel="stylesheet" href="../../Navigation/index.css"/>
+  <link rel="stylesheet" href="../../Courses/Navigation/index.css"/>
+
 </head>
 
 <body>
-  <table>
-    <tbody>
-      <tr>
-        <td valign="top">
-          <div id="main-navigation"></div>
-        </td>
-        <td valign="top">
-          <ul>
-            <li>
-              <a href="../../Courses/Home/screen.html">
-                Home</a>
-            </li>
-            <li><a href="#">
-                Modules</a></li>
-            <li><a href="#">
-                Piazza</a></li>
-            <li><a href="#">
-                Zoom Meetings</a></li>
-            <li><a href="../Assignments/screen.html">
-                Assignments</a></li>
-            <li><a href="../Assignments/Grades/screen.html">
-                Grades</a></li>
-            <li><a href="#">
-                People</a></li>
-            <li><a href="#">
-                Panopto Video</a></li>
-            <li><a href="#">
-                Discussions</a></li>
-            <li><a href="#">
-                Announcements</a></li>
-            <li><a href="#">
-                Pages</a></li>
-            <li><a href="#">
-                Files</a></li>
-            <li><a href="#">
-                Rubrics</a></li>
-            <li><a href="#">
-                Outcomes</a></li>
-            <li><a href="#">
-                Collaborations</a></li>
-            <li><a href="#">
-                Syllabus</a></li>
-            <li><a href="#">
-                Settings</a></li>
-          </ul>
-        </td>
-        <td valign="top">
-          <table>
-            <tbody>
-              <tr>
-                <td valign="top">
-                  <button type="button">Collapse All</button>
+  <div>
+    <ul class="wd-kanbas-navigation">
+      <li id="account">
+         <a href="../../Account/Profile/screen.html"><i class="fa fa-user"></i>Account</a></li>
+      <li>
+         <a href="#"><i class="fa fa-tachometer"></i>Dashboard</a>
+      </li>
+      <li  class="wd-active">
+         <a href="../../Courses/Home/screen.html"><i class="fa fa-book"></i>Courses</a>
+      </li>
+      <li>
+         <a href="#"><i class="fa fa-calendar"></i>Calendar</a>
+      </li>
+      <li>
+         <a href="#"><i class="fa fa-inbox fa-lg"></i><p>Inbox  </p></a>
+      </li>
+      <li>
+         <a href="#"><i class="fa fa-clock-o"></i>History</a>
+      </li>
+      <li>
+         <a href="#"><i class="fa fa-tv"></i>Studio</a>
+      </li>
+      <li>
+         <a href="#"><i class="fa fa-arrow-right"></i>Commons</a>
+      </li>
+      <li>
+         <a href="#"><i class="fa fa-question-circle"></i><p>Help  </p></a>
+      </li>
+   </ul>
+  </div>
+  <div>
+    <ul class="wd-navigation">
+      <li>
+          <a href="../../Courses/Home/screen.html">
+              Home</a>
+      </li>
+      <li class="wd-active"><a href="#">
+              Modules</a></li>
+      <li><a href="#">
+              Piazza</a></li>
+      <li><a href="#">
+              Zoom Meetings</a></li>
+      <li><a href="../Assignments/screen.html">
+              Assignments</a></li>
+      <li><a href="#">
+              Quizzes</a></li>
+      <li><a href="../Grades/screen.html">
+              Grades</a></li>
+      <li><a href="#">
+              People</a></li>
+      <li><a href="#">
+              Panopto Video</a></li>
+      <li><a href="#">
+              Discussions</a></li>
+      <li><a href="#">
+              Announcements</a></li>
+      <li><a href="#">
+              Pages</a></li>
+      <li><a href="#">
+              Files</a></li>
+      <li><a href="#">
+              Rubrics</a></li>
+      <li><a href="#">
+              Outcomes</a></li>
+      <li><a href="#">
+              Collaborations</a></li>
+      <li><a href="#">
+              Syllabus</a></li>
+      <li><a href="#">
+              Settings</a></li>
+  </ul>
+  </div>
+  
 
-                  <button type="button">View Progress</button>
+        <div class="flex-fill">
+          <ul class="list-group wd-modules">
+            <div style="display:flex; flex-direction:row;">
+                <button>Collapse All</button>
+                <button>View Progress</button>
+                <select>
+                    <option value="">Publish All</option>
+                </select>
+                <button>Module</button>
+              </div>
 
-                  <select id="publish-all">
-                    <option value="Publish All">Publish All</option>
-                  </select>
-                  <button type="button">Module</button>
-
-                  <ul>
-                    <li>Week 0 - Intro</li>
-                    <ul>
-                      <li>Learning Objectives</li>
-                      <ul>
-                        <li>Introduction to the course</li>
-                        <li>Learn what is Web Development</li>
-                        <li>Creating a development environment</li>
-                        <li>Creating A Web Application</li>
-                        <li>Getting started with the 1st assignment</li>
-
-                      </ul>
-                    </ul>
-                    <ul>
-                      <li>Reading</li>
-                      <ul>
-                        <li>Full Stack Developer - Chapter 1 - Introduction</li>
-                        <li>Full Stack Developer - Chapter 2 - Creating User Interfaces With Html</li>
-                      </ul>
-                    </ul>
-                    <ul>
-                      <li>Slides</li>
-                      <ul>
-                        <li><a>Introduction to Web Development Links to an external site.</a></li>
-                        <li><a>Creating an HTTP server with Node.js Links to an external site.</a></li>
-                        <li><a>Creating a React Application Links to an external site. </a></li>
-                      </ul>
-                    </ul>
-
-                    <li>Week 1 - HTML</li>
-                    <ul>
-                      <li>Learning Objectives</li>
-                      <ul>
-                        <li>Learn how to create user interfaces with HTML</li>
-                        <li>Keep working on assignment 1</li>
-                        <li>Deploy the assignment to Netlify</li>
-
-                      </ul>
-                    </ul>
-                    <ul>
-                      <li>Reading</li>
-                      <ul>
-                        <li>Full Stack Developer - Chapter 1 - Introduction</li>
-                        <li>Full Stack Developer - Chapter 2 - Creating User Interfaces With Html</li>
-                      </ul>
-                    </ul>
-                  </ul>
-                </td>
-
-                <td valign="top">
-                  <h1>Course Status</h1>
-                  <button type="button">Unpublish</button>
-                  <button type="button">Published</button>
-                  <ul>
-                    <li><a href="#">Introduction to Web Development Links to an external site.</a></li>
-                    <li><a href="#">Introduction to CS Links to an external site.</a></li>
-                  </ul>
-                  <h1>Comming Up</h1>
-                  <a href="#">View Calendar</a>
-                  <br />
-                  <li><a href="#">Lecture 1</a></li>
-                  <li><a href="#">Lecture 2</a></li>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  </td>
-  </tr>
-  </tbody>
-  </table>
 </body>
 
 </html>
