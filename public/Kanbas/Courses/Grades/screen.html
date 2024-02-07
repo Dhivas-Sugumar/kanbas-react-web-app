@@ -3,15 +3,8 @@
 <head>
   <link rel="stylesheet" href="../../styles.css" />
   <link rel="stylesheet" href="../../Navigation/index.css" />
+  <link rel="stylesheet" href="../Navigation/index.css" />
   <link rel="stylesheet" href="../../../libs/font-awesome/css/font-awesome.min.css" />
-  <script>
-    fetch('../../Navigation/index.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('main-navigation').innerHTML = html;
-        })
-        .catch(error => console.error('Error fetching HTML:', error));
-</script>
 <title>Grades</title>
 </head>
 
@@ -20,7 +13,42 @@
     <tbody>
       <tr>
         <td valign="top">
-          <div id="main-navigation"></div>
+          <ul class="wd-kanbas-navigation">
+            <li>
+              <img src="../../../images/northeastern-logo.png" alt="logo" width="40" height="40" />
+           </li>
+            <li id="account">
+              <a href="../../Account/Profile/screen.html"><i class="fa fa-user"></i>Account</a>
+            </li>
+            <li>
+              <a href="../../Dashboard/screen.html"><i class="fa fa-tachometer"></i>Dashboard</a>
+            </li>
+            <li class="wd-active">
+              <a href="../../Courses/Home/screen.html"><i class="fa fa-book"></i>Courses</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-calendar"></i>Calendar</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-inbox fa-lg"></i>
+                <p>Inbox </p>
+              </a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-clock-o"></i>History</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-tv"></i>Studio</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-arrow-right"></i>Commons</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-question-circle"></i>
+                <p>Help </p>
+              </a>
+            </li>
+        </ul>
         </td>
 
         <td valign="top">
@@ -38,7 +66,7 @@
                     Assignments</a></li>
             <li><a href="#">
                     Quizzes</a></li>
-            <li><a href="../Grades/sreen.html">
+            <li><a href="#">
                     Grades</a></li>
             <li><a href="#">
                     People</a></li>
