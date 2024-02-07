@@ -4,30 +4,188 @@
     <link rel="stylesheet" href="../../styles.css" />
     <link rel="stylesheet" href="../../Navigation/index.css" />
     <link rel="stylesheet" href="../../../libs/font-awesome/css/font-awesome.min.css" />
-    <script>
-      fetch('../../Navigation/index.html')
-          .then(response => response.text())
-          .then(html => {
-              document.getElementById('main-navigation').innerHTML = html;
-          })
-          .catch(error => console.error('Error fetching HTML:', error));
-          </script>
+    <link rel="stylesheet" href="../Navigation/index.css" />         
+    <link rel="stylesheet" href="./index.css" />                       
   </head>
   <body>
     <table width="100%">
       <tbody>
         <tr>
-          <td valign="top">
-          </td>
           <td valign="top" style="width: 80px">
-            <div id="main-navigation"></div>
+            <ul class="wd-kanbas-navigation">
+              <li>
+                 <img src="../../images/northeastern-logo.png" alt="logo" width="40" height="40" />
+              </li>
+              <li id="account">
+                 <a href="../Account/Profile/screen.html"><i class="fa fa-user"></i>Account</a>
+              </li>
+              <li class="wd-active">
+                 <a href="#"><i class="fa fa-tachometer"></i>Dashboard</a>
+              </li>
+              <li >
+                 <a href="../Courses/Home/screen.html"><i class="fa fa-book"></i>Courses</a>
+              </li>
+              <li>
+                 <a href="#"><i class="fa fa-calendar"></i>Calendar</a>
+              </li>
+              <li>
+                 <a href="#"><i class="fa fa-inbox fa-lg"></i>
+                    <p>Inbox </p>
+                 </a>
+              </li>
+              <li>
+                 <a href="#"><i class="fa fa-clock-o"></i>History</a>
+              </li>
+              <li>
+                 <a href="#"><i class="fa fa-tv"></i>Studio</a>
+              </li>
+              <li>
+                 <a href="#"><i class="fa fa-arrow-right"></i>Commons</a>
+              </li>
+              <li>
+                 <a href="#"><i class="fa fa-question-circle"></i>
+                    <p>Help </p>
+                 </a>
+              </li>
+           </ul>
           </td>
-          <td>
-            <!-- copy the Dashboard in here. Only what's inside the body tag -->
-            <!-- here are the first few lines as an example -->
+          <td valign="top">
             <div class="p-4">
               <h1>Dashboard</h1>
-              <!-- copy the rest in here -->
+              <hr />
+              <h2>Published Courses (12)</h2>
+              <hr />
+              <div class="row">
+                <div class="row row-cols-1 row-cols-md-5 g-4">
+                  <div class="col-md-6" style="width: 300px">
+                    <div class="card kanbas-course-card">
+                      <img src="../../images/course-image-1.jpg" class="card-img-top" style="max-height: 150px" />
+                      <div class="card-body">
+                        <a class="card-title" href="../Courses/Home/screen.html"
+                          style="text-decoration: none; color: navy; font-weight: bold">
+                          CS4510 16321 Web Development</a>
+                        <div>
+                          <span class="card-text">CS 4550.126421.204210</span>
+                          <span class="card-text">202410_1_Fall 2023 Semester Fall Term</span>
+                        </div>
+                        <div class="pt-2">
+                          <a html="#"><i class="fa fa-file-text-o"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6" style="width: 300px">
+                    <div class="card kanbas-course-card">
+                      <img src="../../images/course-image-2.jpg" class="card-img-top" style="max-height: 150px" />
+                      <div class="card-body">
+                        <a class="card-title" href="../Courses/Home/screen.html"
+                          style="text-decoration: none; color: navy; font-weight: bold">
+                          CS4510 16321 Web Development</a>
+                        <div>
+                          <span class="card-text">CS 4550.126421.204210</span>
+                          <span class="card-text">202410_1_Fall 2023 Semester Fall Term</span>
+                        </div>
+                        <div class="pt-2">
+                          <a html="#"><i class="fa fa-file-text-o"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6" style="width: 300px">
+                    <div class="card kanbas-course-card">
+                      <img src="../../images/course-image-3.jpg" class="card-img-top" style="max-height: 150px" />
+                      <div class="card-body">
+                        <a class="card-title" href="../Courses/Home/screen.html"
+                          style="text-decoration: none; color: navy; font-weight: bold">
+                          CS4510 16321 Web Development</a>
+                        <div>
+                          <span class="card-text">CS 4550.126421.204210</span>
+                          <span class="card-text">202410_1_Fall 2023 Semester Fall Term</span>
+                        </div>
+                        <div class="pt-2">
+                          <a html="#"><i class="fa fa-file-text-o"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="row row-cols-1 row-cols-md-5 g-4">
+                  <div class="col-md-6" style="width: 300px">
+                    <div class="card kanbas-course-card">
+                      <img src="../../images/course-image-4.jpg" class="card-img-top" style="max-height: 150px" />
+                      <div class="card-body">
+                        <a class="card-title" href="../Courses/Home/screen.html"
+                          style="text-decoration: none; color: navy; font-weight: bold">
+                          CS4510 16321 Web Development</a>
+                        <div>
+                          <span class="card-text">CS 4550.126421.204210</span>
+                          <span class="card-text">202410_1_Fall 2023 Semester Fall Term</span>
+                        </div>
+                        <div class="pt-2">
+                          <a html="#"><i class="fa fa-file-text-o"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6" style="width: 300px">
+                    <div class="card kanbas-course-card">
+                      <img src="../../images/course-image-5.jpg" class="card-img-top" style="max-height: 150px" />
+                      <div class="card-body">
+                        <a class="card-title" href="../Courses/Home/screen.html"
+                          style="text-decoration: none; color: navy; font-weight: bold">
+                          CS4510 16321 Web Development</a>
+                        <div>
+                          <span class="card-text">CS 4550.126421.204210</span>
+                          <span class="card-text">202410_1_Fall 2023 Semester Fall Term</span>
+                        </div>
+                        <div class="pt-2">
+                          <a html="#"><i class="fa fa-file-text-o"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6" style="width: 300px">
+                    <div class="card kanbas-course-card">
+                      <img src="../../images/course-image-6.jfif" class="card-img-top" style="max-height: 150px" />
+                      <div class="card-body">
+                        <a class="card-title" href="../Courses/Home/screen.html"
+                          style="text-decoration: none; color: navy; font-weight: bold">
+                          CS4510 16321 Web Development</a>
+                        <div>
+                          <span class="card-text">CS 4550.126421.204210</span>
+                          <span class="card-text">202410_1_Fall 2023 Semester Fall Term</span>
+                        </div>
+                        <div class="pt-2">
+                          <a html="#"><i class="fa fa-file-text-o"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="row row-cols-1 row-cols-md-5 g-4">
+                  <div class="col-md-6" style="width: 300px">
+                    <div class="card kanbas-course-card">
+                      <img src="../../images/TS.png" class="card-img-top" style="max-height: 150px" />
+                      <div class="card-body">
+                        <a class="card-title" href="../Courses/Home/screen.html"
+                          style="text-decoration: none; color: navy; font-weight: bold">
+                          CS4510 16321 Web Development</a>
+                        <div>
+                          <span class="card-text">CS 4550.126421.204210</span>
+                          <span class="card-text">202410_1_Fall 2023 Semester Fall Term</span>
+                        </div>
+                        <div class="pt-2">
+                          <a html="#"><i class="fa fa-file-text-o"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </td>
         </tr>

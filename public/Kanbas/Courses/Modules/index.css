@@ -31,3 +31,28 @@
   margin-bottom: 20px;
 }
 
+list-group-item-heading {
+  background-color: lightgray;
+  border: 1px solid gray !important;
+  border-left: none !important;
+}
+
+.list-group-item-sub {
+  padding-left: 30px !important; /* Adjust the padding as needed */
+}
+
+.wd-modules-header-buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+.wd-modules-header-button {
+  margin: 2px;
+  border: 1px solid grey;
+  padding: 5px;
+}
+
+.wd-modules-header-button i {
+  margin-right: 4px;
+}
