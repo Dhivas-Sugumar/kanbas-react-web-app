@@ -1,5 +1,5 @@
 import { courses } from "../../Kanbas/Database";
-import { Navigate, Route, Routes, useParams } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation, useParams } from "react-router-dom";
 import { HiMiniBars3 } from "react-icons/hi2";
 import CourseNavigation from "./Navigation";
 import Modules from "./Modules";
@@ -9,10 +9,14 @@ import Assignments from "./Assignments";
 
 function Courses() {
   const { courseId } = useParams();
+  const location = useLocation();
+
   const course = courses.find((course) => course._id === courseId);
+  const currentSection = location.pathname.split('/').pop();
+
   return (
     <div>
-      <h1><HiMiniBars3 /> Course {course?.name}</h1>
+      <h3><HiMiniBars3 /> {`${course?.name} > ${currentSection}`}</h3>
       <CourseNavigation />
       <div>
         <div

@@ -4,27 +4,7 @@ import { modules } from "../../Database";
 import { FaEllipsisV, FaCheckCircle, FaPlusCircle } from "react-icons/fa";
 import { useParams } from "react-router";
 
-const ModulesHeaderButtons = () => {
-  return (
-    <div className="wd-modules-header-buttons-container">
-      <button className="wd-modules-header-button">
-        Collapse All
-      </button>
-      <button className="wd-modules-header-button ml-auto">
-        View Progress
-      </button>
-      <button className="wd-modules-header-button ml-auto">
-        <i style={{ color: 'green' }} className="fa fa-check-circle"></i>Publish All <i className="fa fa-arrow-down"></i>
-      </button>
-      <button style={{ backgroundColor: 'red', color: 'white' }} className="wd-modules-header-button ml-auto">
-        <i className="fa fa-plus"></i>Module
-      </button>
-      <button className="wd-modules-header-button ml-auto">
-        <FaEllipsisV />                           
-      </button>
-    </div>
-  );
-}
+
 
 
 function ModuleList() {
@@ -33,7 +13,7 @@ function ModuleList() {
   const [selectedModule, setSelectedModule] = useState(modulesList[0]);
   return (
     <>
-    <ModulesHeaderButtons />
+
       <ul className="list-group wd-modules">
         {modulesList.map((module) => (
           <li

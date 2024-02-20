@@ -2,6 +2,7 @@ import React from "react";
 import { FaCheckCircle, FaEdit, FaEllipsisV, FaPlus, FaPlusCircle } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { assignments } from "../../Database";
+import "../../styles.css";     
 function Assignments() {
   const { courseId } = useParams();
   const assignmentList = assignments.filter(
