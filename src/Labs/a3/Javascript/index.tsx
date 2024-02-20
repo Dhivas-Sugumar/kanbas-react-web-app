@@ -1,3 +1,4 @@
+import Highlight from "../Highlight";
 import { WorkingWithArrays } from "./arrays/WorkingWithArrays";
 import { IfElse } from "./conditionals/IfElse";
 import { TernaryOperator } from "./conditionals/TernaryOperator";

@@ -8,8 +8,8 @@ const string3Index = stringArray1.findIndex(a => a === 'string3');
 return(
   <>
   <h3>FindIndex function</h3>
-  <p>fourIndex = ${fourIndex}</p>
-  <p>string3Index = ${string3Index}</p>
+  <p>fourIndex = {fourIndex}</p>
+  <p>string3Index = {string3Index}</p>
   </>
 )
 }

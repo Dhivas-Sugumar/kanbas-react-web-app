@@ -6,8 +6,9 @@ const four = numberArray1.find(a => a === 4);
 const string3 = stringArray1.find(a => a === 'string3');
 return(
   <>
-  <p>four = ${four}</p>
-  <p>string3 = ${string3}</p>
+  <h3>Find Function</h3>
+  <p>four = {four}</p>
+  <p>string3 = {string3}</p>
   </>
 )
 }

@@ -1,0 +1,58 @@
+.wd-modules,
+.wd-modules * {
+  border-radius: 0%;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.wd-modules {
+  margin: 5px;
+}
+
+.wd-modules > li {
+  background-color: lightgray;
+  border: 1px solid gray !important;
+  border-left: none !important;
+}
+
+.wd-modules > li > div {
+  padding: 6px;
+  border-left: 1px solid gray !important;
+}
+
+.wd-modules > li > ul > li {
+  padding: 5px;
+  border-top: 1px solid gray !important;
+  border-left: 2px solid green;
+}
+
+.wd-modules > li {
+  margin-bottom: 20px;
+}
+
+list-group-item-heading {
+  background-color: lightgray;
+  border: 1px solid gray !important;
+  border-left: none !important;
+}
+
+.list-group-item-sub {
+  padding-left: 30px !important; /* Adjust the padding as needed */
+}
+
+.wd-modules-header-buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+.wd-modules-header-button {
+  margin: 2px;
+  border: 1px solid grey;
+  padding: 5px;
+}
+
+.wd-modules-header-button i {
+  margin-right: 4px;
+}

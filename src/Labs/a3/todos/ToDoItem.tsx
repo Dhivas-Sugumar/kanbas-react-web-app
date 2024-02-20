@@ -1,11 +1,11 @@
 const TodoItem = ( { todo = { done: true, title: 'Buy milk',
                               status: 'COMPLETED' } }) => {
  return (
-   <li className="list-group-item">
+  <><li className="list-group-item">
      <input type="checkbox" className="me-2"
-            defaultChecked={todo.done}/>
+       defaultChecked={todo.done} />
      {todo.title} ({todo.status})
-   </li>
+   </li></>
  );
 }
 export default TodoItem;

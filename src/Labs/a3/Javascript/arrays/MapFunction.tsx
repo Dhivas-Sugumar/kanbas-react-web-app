@@ -8,8 +8,8 @@ const cubes = numberArray1.map(a => a * a * a);
   return(
     <div>
       <h3>Map</h3>
-      <p>squares = ${squares.join("")}</p>
-      <p>cubes = ${cubes.join("")}</p>
+      <p>squares = {squares.join("")}</p>
+      <p>cubes = {cubes.join("")}</p>
     </div>
   )
 }

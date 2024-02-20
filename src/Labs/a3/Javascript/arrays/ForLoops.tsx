@@ -10,6 +10,6 @@ export const ForLoops = () => {
   }
 
   return(
-    <p>stringArray1 = {stringArray1.join('')}</p>
+    <><h3>Looping through arrays</h3><p>stringArray1 = {stringArray1.join('')}</p></>
   )
 }

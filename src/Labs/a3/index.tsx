@@ -5,6 +5,8 @@ import Highlight from "./Highlight";
 import JavaScript from "./Javascript";
 import { Styles } from "./Styles";
 import PathParameters from "./routing/PathParameters";
+import TodoItem from "./todos/ToDoItem";
+import TodoList from "./todos/ToDoList";
 
 function Assignment3() {
   return (
@@ -20,7 +22,8 @@ function Assignment3() {
         vel nihil repellat nemo explicabo excepturi consectetur. Modi omnis minus sequi maiores, provident voluptates.
      </Highlight>
      <Add a={3} b={4} />
-
+     <TodoItem />                    
+     <TodoList />                                       
     </div>
   );
 }
