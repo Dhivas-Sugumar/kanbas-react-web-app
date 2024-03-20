@@ -1,10 +1,8 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteTodo, setTodo } from "./todosReducer";
-import { LabState } from "../../../store";
-function TodoItem({ 
- }) {
-  const { todo } = useSelector((state: LabState) => state.todosReducer);
+import { TodoType } from "../../../store";
+function TodoItem( { todo }: { todo: TodoType }) {
   const dispatch = useDispatch();
   return (
     <li key={todo.id} className="list-group-item">
