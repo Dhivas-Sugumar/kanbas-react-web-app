@@ -19,18 +19,19 @@ import * as client from "./client";
 function ModuleList() {
 
   const { courseId } = useParams();
-  const moduleList = useSelector((state: KanbasState) =>
-  state.modulesReducer.modules);
-const module = useSelector((state: KanbasState) =>
-  state.modulesReducer.module);
-  const [selectedModule, setSelectedModule] = useState(moduleList[0]);
-
   useEffect(() => {
     client.findModulesForCourse(courseId)
       .then((modules) =>
         dispatch(setModules(modules))
     );
   }, [courseId]);
+  const moduleList = useSelector((state: KanbasState) =>
+  state.modulesReducer.modules);
+const module = useSelector((state: KanbasState) =>
+  state.modulesReducer.module);
+  const [selectedModule, setSelectedModule] = useState(module);
+
+
   const handleAddModule = () => {
     client.createModule(courseId, module).then((module) => {
       dispatch(addModule(module));
