@@ -7,7 +7,10 @@ import Assignments from "./Assignments";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const COURSES_API = "http://localhost:4000/api/courses";
+const API_BASE = process.env.REACT_APP_API_BASE;
+
+
+const COURSES_API = `${API_BASE}/api/courses`;
 
 function Courses({ courses }: { courses: any[]; }) {
   const { courseId } = useParams();
