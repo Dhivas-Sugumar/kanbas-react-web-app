@@ -19,6 +19,12 @@ import * as client from "./client";
 function ModuleList() {
 
   const { courseId } = useParams();
+  const moduleList = useSelector((state: KanbasState) =>
+  state.modulesReducer.modules);
+const module = useSelector((state: KanbasState) =>
+  state.modulesReducer.module);
+  const [selectedModule, setSelectedModule] = useState(moduleList[0]);
+
   useEffect(() => {
     client.findModulesForCourse(courseId)
       .then((modules) =>
@@ -39,12 +45,8 @@ function ModuleList() {
     const status = await client.updateModule(module);
     dispatch(updateModule(module));
   };
-  const moduleList = useSelector((state: KanbasState) =>
-    state.modulesReducer.modules);
-  const module = useSelector((state: KanbasState) =>
-    state.modulesReducer.module);
+
   const dispatch = useDispatch();
-  const [selectedModule, setSelectedModule] = useState(moduleList[0]);
 
 
   return (
