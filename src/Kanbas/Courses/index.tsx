@@ -4,14 +4,26 @@ import CourseNavigation from "./Navigation";
 import Modules from "./Modules";
 import Home from "./Home";
 import Assignments from "./Assignments";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
+const COURSES_API = "http://localhost:4000/api/courses";
 
 function Courses({ courses }: { courses: any[]; }) {
   const { courseId } = useParams();
   const location = useLocation();
-
-  const course = courses.find((course) => course._id === courseId);
+  const [course, setCourse] = useState<any>({ _id: "" });
+  const findCourseById = async (courseId?: string) => {
+    const response = await axios.get(
+      `${COURSES_API}/${courseId}`
+    );
+    setCourse(response.data);
+  };
   const currentSection = location.pathname.split('/').pop();
+
+  useEffect(() => {
+    findCourseById(courseId);
+  }, [courseId]);
 
   return (
     <div>

@@ -2,42 +2,57 @@ import { Routes, Route, Navigate } from "react-router";
 import Dashboard from "./Dashboard";
 import KanbasNavigation from "./Navigation";
 import Courses from "./Courses";
-import { useState } from "react";
-import db from "./Database"
+import { useEffect, useState } from "react";
 import store from "./store";
 import { Provider } from "react-redux";
+import axios from "axios";
+
+const API_BASE = process.env.REACT_APP_API_BASE;
+
 
 function Kanbas() {
-  const [courses, setCourses] = useState(db.courses);
+  const [courses, setCourses] = useState<any[]>([]);
+  const COURSES_API = `${API_BASE}/api/courses`;
+
+  const findAllCourses = async () => {
+    const response = await axios.get(COURSES_API);
+    setCourses(response.data);
+  };
+  const deleteCourse = async (courseId: string) => {
+    const response = await axios.delete(
+      `${COURSES_API}/${courseId}`
+    );
+    setCourses(courses.filter(
+      (c) => c._id !== courseId));
+  };
+
+  useEffect(() => {
+    findAllCourses();
+  }, []);
+  const addNewCourse = async () => {
+    const response = await axios.post(COURSES_API, course);
+    setCourses([ ...courses, response.data ]);
+  };
+
   const [course, setCourse] = useState({
     _id: "0", name: "New Course", number: "New Number",
     startDate: "2023-09-10", endDate: "2023-12-15",
     image: 'course-image-1.jpg'
   });
-
-  const addNewCourse = () => {
-    const newCourse = { ...course,
-                        _id: new Date().getTime().toString() };
-    setCourses([...courses, { ...course, ...newCourse }]);
-  };
-
-  const deleteCourse = (courseId: string) => {
-    setCourses(courses.filter((course) => course._id !== courseId));
-  };
-
-  const updateCourse = () => {
+  const updateCourse = async () => {
+    const response = await axios.put(
+      `${COURSES_API}/${course._id}`,
+      course
+    );
     setCourses(
       courses.map((c) => {
         if (c._id === course._id) {
           return course;
-        } else {
-          return c;
         }
+        return c;
       })
     );
   };
-
-
   
   return (
     <Provider store={store}>
