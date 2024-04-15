@@ -13,6 +13,11 @@ const API_BASE = process.env.REACT_APP_API_BASE;
 
 function Kanbas() {
   const [courses, setCourses] = useState<any[]>([]);
+    const [course, setCourse] = useState({
+    _id: "0", name: "New Course", number: "New Number",
+    startDate: "2023-09-10", endDate: "2023-12-15",
+    image: 'course-image-1.jpg'
+  });
   const COURSES_API = `${API_BASE}/api/courses`;
 
   const findAllCourses = async () => {
@@ -35,11 +40,7 @@ function Kanbas() {
     setCourses([ ...courses, response.data ]);
   };
 
-  const [course, setCourse] = useState({
-    _id: "0", name: "New Course", number: "New Number",
-    startDate: "2023-09-10", endDate: "2023-12-15",
-    image: 'course-image-1.jpg'
-  });
+
   const updateCourse = async () => {
     const response = await axios.put(
       `${COURSES_API}/${course._id}`,

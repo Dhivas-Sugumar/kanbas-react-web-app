@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import image from "../../public/images/course-image-4.jpg";
+import image from "../../public/images/course-image-1.jpg";
 
 
 function Dashboard(
@@ -10,7 +10,8 @@ function Dashboard(
     addNewCourse: () => void; deleteCourse: (course: any) => void;
     updateCourse: () => void; })
    {
-  
+
+    console.log(courses);
   return (
     <div className="p-4">
       <h1>Dashboard</h1> <hr />
@@ -31,7 +32,7 @@ function Dashboard(
           {courses.map((course) => (
             <div key={course._id} className="col" style={{ width: 300 }}>
               <div className="card">
-                <img src={require(`../../public/images/${course.image}`)} className="card-img-top"
+                <img src={image} className="card-img-top"
                   style={{ height: 150 }} />
                 <div className="card-body">
                   <Link className="card-title" to={`/Kanbas/Courses/${course._id}/Home`}
