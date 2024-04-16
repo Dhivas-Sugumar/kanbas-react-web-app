@@ -9,11 +9,38 @@ interface Module {
   lessons: string[];
 }
 
+export interface Quiz {
+  _id: string;
+  title: string;
+  description: string;
+  quizType: "Graded Quiz" | "Practice Quiz" | "Graded Survey" | "Ungraded Survey";
+  points: number;
+  assignmentGroup: "Quizzes" | "Exams" | "Assignments" | "Project";
+  shuffleAnswers: boolean;
+  timeLimit: number;
+  multipleAttempts: boolean;
+  showCorrectAnswers: boolean;
+  accessCode: string;
+  oneQuestionAtATime: boolean;
+  webcamRequired: boolean;
+  lockQuestionsAfterAnswering: boolean;
+  dueDate: Date;
+  availableDate: Date;
+  untilDate: Date;
+  course: string; // Assuming course ID or name here
+}
+
 export interface ModuleState {
   modules: Module[];
   module: Module;
 
 }
+
+export interface QuizState {
+  quizzes: Quiz[];
+  quiz: Quiz;
+}
+
 export interface KanbasState {
   modulesReducer: {
     modules: Module[];
