@@ -21,6 +21,7 @@ const initialState: QuizState = {
     dueDate: new Date(),
     availableDate: new Date(),
     untilDate: new Date(),
+    published: false,
     course: "Test", // Assuming course ID or name here
   },
 };

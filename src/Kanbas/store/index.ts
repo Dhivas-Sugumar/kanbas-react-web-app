@@ -29,6 +29,7 @@ export interface Quiz {
   availableDate: Date;
   untilDate: Date;
   course: string; // Assuming course ID or name here
+  published: boolean;
 }
 
 export interface ModuleState {

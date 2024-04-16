@@ -12,6 +12,8 @@ import {
 } from "./reducer";
 import { KanbasState } from "../../store";
 import * as client from "./client";
+import { Dropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function QuizList() {
   const { courseId } = useParams();
@@ -46,6 +48,17 @@ function QuizList() {
     dispatch(updateQuiz(quiz));
   };
 
+  const handlePublishQuiz = async () => {
+    const newQuiz = { ...quiz, published: !quiz.published };
+    await client.updateQuiz(newQuiz);
+    dispatch(updateQuiz(newQuiz));
+  }
+
+  const handleEditQuiz = () => {
+    // Navigate to Quiz Details screen
+  }
+
+
   const dispatch = useDispatch();
 
   return (
@@ -77,16 +90,24 @@ function QuizList() {
             >
               <div>
                 <FaEllipsisV className="me-2" />
-                {quiz.title}
+                <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}`}>
+                    {quiz.title} </Link>
                 <span className="float-end">
                   <FaCheckCircle className="text-success" />
                   <FaPlusCircle className="ms-2" />
-                  <FaEllipsisV className="ms-2" />
+                  <div className="wd-modules-header-buttons-container">
+      <Dropdown className="ml-auto">
+        <Dropdown.Toggle variant="secondary" id="dropdownMenuButton">
+          <FaEllipsisV />
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={handleUpdateQuiz}>Edit</Dropdown.Item>
+          <Dropdown.Item onClick={() => {handleDeleteQuiz(quiz._id)}}>Delete</Dropdown.Item>
+          <Dropdown.Item onClick={() => {handlePublishQuiz()}}>Publish</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+    </div>
                 </span>
-                <button onClick={() => handleDeleteQuiz(quiz._id)}>
-                  Delete
-                </button>
-                <button onClick={() => dispatch(setQuiz(quiz))}>Edit</button>
               </div>
             </li>
           ))}
