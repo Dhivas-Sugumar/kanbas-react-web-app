@@ -15,8 +15,9 @@ import * as client from "./client";
 
 function QuizList() {
   const { courseId } = useParams();
-
+  console.log("Course ID", courseId);
   useEffect(() => {
+    console.log("Finding quizzes for course", courseId);
     client.findQuizzesForCourse(courseId)
       .then((quizzes) =>
         dispatch(setQuizzes(quizzes))
@@ -29,7 +30,6 @@ function QuizList() {
   const quiz = useSelector((state: KanbasState) =>
     state.quizzesReducer.quiz
   );
-  const [selectedQuiz, setSelectedQuiz] = useState(quiz);
 
   const handleAddQuiz = () => {
     client.createQuiz(courseId, quiz).then((quiz) => {
@@ -73,7 +73,6 @@ function QuizList() {
           .map((quiz, index) => (
             <li
               className="list-group-item"
-              onClick={() => setSelectedQuiz(quiz)}
               key={index}
             >
               <div>
@@ -89,22 +88,6 @@ function QuizList() {
                 </button>
                 <button onClick={() => dispatch(setQuiz(quiz))}>Edit</button>
               </div>
-              {selectedQuiz._id === quiz._id && (
-                <ul className="list-group">
-                  {/* Assuming lessons are represented similarly to modules */}
-                  {/* Modify this section accordingly if lessons have different structure */}
-                  {quiz.lessons?.map((lesson: any) => (
-                    <li className="list-group-item" key={lesson._id}>
-                      <FaEllipsisV className="me-2" />
-                      {lesson.name}
-                      <span className="float-end">
-                        <FaCheckCircle className="text-success" />
-                        <FaEllipsisV className="ms-2" />
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              )}
             </li>
           ))}
       </ul>
