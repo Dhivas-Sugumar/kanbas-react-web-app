@@ -1,6 +1,6 @@
 
-const Questions = () => {
+const QuestionsList = () => {
 
 }
 
-export default Questions;
+export default QuestionsList;
