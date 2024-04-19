@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import modulesReducer from "../Courses/Modules/reducer";
 import quizzesReducer from "../Courses/Quizzes/reducer";
+import questionsReducer from "../Courses/Quizzes/Questions/reducer";
 
 interface Module {
   _id: string;
@@ -32,6 +33,18 @@ export interface Quiz {
   published: boolean;
 }
 
+export interface Question {
+  _id: string;
+  title: string;
+  points: number;
+  questionType: "Multiple Choice" | "True/False" | "Multiple Blanks";
+  question: string;
+  correctAnswer: string;
+  choices: string[];
+  quizId: string;
+  quizOrder: number;
+}
+
 export interface ModuleState {
   modules: Module[];
   module: Module;
@@ -43,6 +56,11 @@ export interface QuizState {
   quiz: Quiz;
 }
 
+export interface QuestionState {
+  questions: Question[];
+  question: Question;
+}
+
 export interface KanbasState {
   modulesReducer: {
     modules: Module[];
@@ -52,11 +70,17 @@ export interface KanbasState {
     quizzes: Quiz[];
     quiz: Quiz;
   };
+  questionsReducer: {
+    questions: Question[];
+    question: Question;
+  }
 }
 const store = configureStore({
   reducer: {
     modulesReducer,
-    quizzesReducer
+    quizzesReducer,
+    questionsReducer,
+
   }
 });
 
