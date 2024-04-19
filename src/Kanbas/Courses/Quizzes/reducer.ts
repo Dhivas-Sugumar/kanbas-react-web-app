@@ -18,9 +18,9 @@ const initialState: QuizState = {
     oneQuestionAtATime: true,
     webcamRequired: false,
     lockQuestionsAfterAnswering: false,
-    dueDate: new Date(),
-    availableDate: new Date(),
-    untilDate: new Date(),
+    dueDate: '',
+    availableDate: '',
+    untilDate: '',
     published: false,
     course: "Test", // Assuming course ID or name here
   },
@@ -34,7 +34,7 @@ const quizzesSlice = createSlice({
       state.quizzes = action.payload;
     },
     addQuiz: (state, action) => {
-      state.quizzes = [action.payload, ...state.quizzes];
+      state.quizzes = [...state.quizzes, action.payload];
     },
     deleteQuiz: (state, action) => {
       state.quizzes = state.quizzes.filter(
@@ -53,6 +53,15 @@ const quizzesSlice = createSlice({
     setQuiz: (state, action) => {
       state.quiz = action.payload;
     },
+    setQuizById: (state, action) => {
+      for(let quiz of state.quizzes) {
+        if(quiz._id === action.payload) {
+          state.quiz = quiz;
+          break;
+        }
+      }
+      console.log(state.quiz._id);
+    }
   },
 });
 
@@ -62,6 +71,7 @@ export const {
   updateQuiz,
   setQuiz,
   setQuizzes,
+  setQuizById
 } = quizzesSlice.actions;
 
 export default quizzesSlice.reducer;

@@ -1,28 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import * as client from "./client";
+import { useDispatch, useSelector } from "react-redux";
+import { KanbasState } from "../../store";
+import { setQuizById, updateQuiz } from "./reducer";
 function QuizEditor() {
   const { quizId } = useParams();
 
   // Quiz details state
-  const [quizDetails, setQuizDetails] = useState({
-    title: "Sample Quiz",
-    description: "This is a sample quiz",
-    quizType: "Graded Quiz",
-    points: 10,
-    assignmentGroup: "Quizzes",
-    shuffleAnswers: true,
-    timeLimit: 20,
-    multipleAttempts: false,
-    showCorrectAnswers: false,
-    accessCode: "",
-    oneQuestionAtATime: true,
-    webcamRequired: false,
-    lockQuestionsAfterAnswering: false,
-    dueDate: "2024-04-30",
-    availableDate: "2024-04-16",
-    untilDate: "2024-05-15",
-  });
+  // const [quizDetails, setQuizDetails] = useState<any>()
+
+  // useEffect(() => {
+  //   const quiz = client.findQuizById(quizId);
+
+  // }, [quizId]);
+
+  const quizDetails = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
+  const dispatch = useDispatch();
+  dispatch(setQuizById(quizId));
 
   // Tab state
   const [activeTab, setActiveTab] = useState("details");
@@ -61,7 +56,7 @@ function QuizEditor() {
             type="text"
             value={quizDetails.title}
             onChange={(e) =>
-              setQuizDetails({ ...quizDetails, title: e.target.value })
+              dispatch(updateQuiz({ ...quizDetails, title: e.target.value }))
             }
           />
           {/* Other input fields for quiz details */}

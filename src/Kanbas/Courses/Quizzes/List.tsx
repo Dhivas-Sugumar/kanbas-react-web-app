@@ -20,10 +20,10 @@ function QuizList() {
   console.log("Course ID", courseId);
   useEffect(() => {
     console.log("Finding quizzes for course", courseId);
-    client.findQuizzesForCourse(courseId)
-      .then((quizzes) =>
-        dispatch(setQuizzes(quizzes))
-      );
+    // client.findQuizzesForCourse(courseId)
+    //   .then((quizzes) =>
+    //     dispatch(setQuizzes(quizzes))
+    //   );
   }, [courseId]);
 
   const quizList = useSelector((state: KanbasState) =>

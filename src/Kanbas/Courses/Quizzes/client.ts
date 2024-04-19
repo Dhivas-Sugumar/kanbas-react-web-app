@@ -11,6 +11,7 @@ export const deleteQuiz = async (quizId : any) => {
 
 export const findQuizzesForCourse = async (courseId : any) => {
   const response = await axios.get(`${COURSES_API}/${courseId}/quizzes`);
+  console.log(response.data);
   return response.data;
 };
 

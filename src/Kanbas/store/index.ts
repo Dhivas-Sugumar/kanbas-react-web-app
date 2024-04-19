@@ -25,9 +25,9 @@ export interface Quiz {
   oneQuestionAtATime: boolean;
   webcamRequired: boolean;
   lockQuestionsAfterAnswering: boolean;
-  dueDate: Date;
-  availableDate: Date;
-  untilDate: Date;
+  dueDate: string;
+  availableDate: string;
+  untilDate: string;
   course: string; // Assuming course ID or name here
   published: boolean;
 }

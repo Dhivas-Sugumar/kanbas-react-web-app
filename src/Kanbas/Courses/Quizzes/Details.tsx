@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { findQuizById } from "./client";
-
 function QuizDetails() {
   const { quizId } = useParams();
   const [quiz, setQuiz] = useState<any>({ _id: "" });
@@ -22,8 +21,10 @@ function QuizDetails() {
   };
 
   const handleEdit = () => {
-    // Navigate to Quiz Editor screen
+    
   };
+
+  
 
   return (
     <div>
@@ -47,9 +48,12 @@ function QuizDetails() {
       {/* Buttons */}
       <button onClick={handlePublish}>Publish</button>
       <button onClick={handlePreview}>Preview</button>
-      <button onClick={handleEdit}>Edit</button>
+      <Link to={`/Kanbas/Courses/${quiz.course}/Quizzes/${quiz._id}/edit`}>
+        <button onClick={handleEdit}>Edit</button>
+      </Link>
     </div>
   );
 }
 
 export default QuizDetails;
+

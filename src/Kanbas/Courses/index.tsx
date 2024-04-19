@@ -9,6 +9,8 @@ import axios from "axios";
 import Quizzes from "./Quizzes";
 import QuizDetails from "./Quizzes/Details";
 import QuizEditor from "./Quizzes/Edit";
+import { useDispatch } from "react-redux";
+import { setQuizzes } from "./Quizzes/reducer";
 
 const API_BASE = process.env.REACT_APP_API_BASE;
 
@@ -16,6 +18,9 @@ const API_BASE = process.env.REACT_APP_API_BASE;
 const COURSES_API = `${API_BASE}/api/courses`;
 
 function Courses({ courses }: { courses: any[]; }) {
+
+  const dispatch = useDispatch();
+
   const { courseId } = useParams();
   const location = useLocation();
   const [course, setCourse] = useState<any>({ _id: "" });
@@ -24,6 +29,9 @@ function Courses({ courses }: { courses: any[]; }) {
       `${COURSES_API}/${courseId}`
     );
     setCourse(response.data);
+
+    const quizes = await axios.get(`${COURSES_API}/${courseId}/quizzes`);
+    dispatch(setQuizzes(quizes.data));
   };
   const currentSection = location.pathname.split('/').pop();
 
