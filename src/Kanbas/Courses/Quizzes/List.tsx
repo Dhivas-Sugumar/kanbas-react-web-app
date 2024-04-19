@@ -48,7 +48,7 @@ function QuizList() {
     dispatch(updateQuiz(quiz));
   };
 
-  const handlePublishQuiz = async () => {
+  const handlePublishQuiz = async (quiz: any) => {
     const newQuiz = { ...quiz, published: !quiz.published };
     await client.updateQuiz(newQuiz);
     dispatch(updateQuiz(newQuiz));
@@ -103,7 +103,7 @@ function QuizList() {
         <Dropdown.Menu>
           <Dropdown.Item onClick={handleUpdateQuiz}>Edit</Dropdown.Item>
           <Dropdown.Item onClick={() => {handleDeleteQuiz(quiz._id)}}>Delete</Dropdown.Item>
-          <Dropdown.Item onClick={() => {handlePublishQuiz()}}>Publish</Dropdown.Item>
+          <Dropdown.Item onClick={() => {handlePublishQuiz(quiz)}}>Publish</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </div>
