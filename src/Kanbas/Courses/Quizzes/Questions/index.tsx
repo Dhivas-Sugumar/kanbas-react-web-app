@@ -1,1 +1,6 @@
-export const 
+
+const Questions = () => {
+
+}
+
+export default Questions;
