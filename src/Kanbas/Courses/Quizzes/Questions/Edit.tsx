@@ -3,6 +3,7 @@ import { KanbasState, Question } from "../../../store";
 import { useDispatch, useSelector } from "react-redux";
 import MultipleBlanksEdit from "./MultipleBlanksEdit";
 import MultipleChoiceEdit from "./MultipleChoiceEdit";
+import TrueFalseEdit from "./TrueFalseEdit";
 
 const EditQuestion = () => {
     const question = useSelector((state: KanbasState) => state.questionsReducer.quiz);
@@ -24,7 +25,7 @@ const EditQuestion = () => {
       </label>  
       {question.type === "multiple_choice" && <MultipleChoiceEdit  />}
       {question.type === "multiple_blanks" && <MultipleBlanksEdit question={question} />} 
-      {question.type === "true_false" && <TrueFalseEdit question={question} />}   
+      {question.type === "true_false" && <TrueFalseEdit />}   
       </div>
     );
 }
