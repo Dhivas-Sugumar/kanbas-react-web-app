@@ -1,6 +1,6 @@
 import { Question } from "../../../store";
 
-const MultipleBlanksEdit = (question: Question) => {
+const MultipleBlanksEdit = ({question}: {question: Question}) => {
   return(
     <div>
 
