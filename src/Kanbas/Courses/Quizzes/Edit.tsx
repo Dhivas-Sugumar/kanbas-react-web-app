@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import * as client from "./client";
 import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../../store";
-import { setQuizById, updateQuiz } from "./reducer";
+import { setQuiz, setQuizById, updateQuiz } from "./reducer";
+import { Dropdown } from "react-bootstrap";
+import DetailsEdit from "./DetailsEdit";
 function QuizEditor() {
-  const { quizId } = useParams();
-
+  const { courseId, quizId } = useParams();
   // Quiz details state
   // const [quizDetails, setQuizDetails] = useState<any>()
 
@@ -15,17 +16,20 @@ function QuizEditor() {
 
   // }, [quizId]);
 
+  
   const quizDetails = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
   const dispatch = useDispatch();
-  dispatch(setQuizById(quizId));
+  
+  useEffect(() => {
+    dispatch(setQuizById(quizId));
+  }, [quizId]);
 
   // Tab state
   const [activeTab, setActiveTab] = useState("details");
 
   const handleSave = () => {
-    // Implement save functionality
-    // Save quiz details to the database
-    // Navigate to Quiz Details screen
+    client.updateQuiz(quizDetails);
+    dispatch(updateQuiz(quizDetails));
   };
 
   const handleSaveAndPublish = () => {
@@ -33,12 +37,15 @@ function QuizEditor() {
     // Save quiz details to the database
     // Publish quiz
     // Navigate to Quiz List screen
-
+    dispatch(setQuizById({ ...quizDetails, published: true }));
+    handleSave();
   };
 
   const handleCancel = () => {
-    // Navigate to Quiz List screen without saving
+    dispatch(setQuizById(quizId));
   };
+
+  
 
   return (
     <div>
@@ -48,19 +55,8 @@ function QuizEditor() {
         <button onClick={() => setActiveTab("details")}>Details</button>
         <button onClick={() => setActiveTab("questions")}>Questions</button>
       </div>
-      {/* Details tab */}
       {activeTab === "details" && (
-        <div>
-          <label>Title:</label>
-          <input
-            type="text"
-            value={quizDetails.title}
-            onChange={(e) =>
-              dispatch(updateQuiz({ ...quizDetails, title: e.target.value }))
-            }
-          />
-          {/* Other input fields for quiz details */}
-        </div>
+        <DetailsEdit/>
       )}
       {/* Questions tab */}
       {activeTab === "questions" && (
@@ -70,9 +66,15 @@ function QuizEditor() {
         </div>
       )}
       {/* Buttons */}
-      <button onClick={handleSave}>Save</button>
-      <button onClick={handleSaveAndPublish}>Save and Publish</button>
-      <button onClick={handleCancel}>Cancel</button>
+      <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`}>
+        <button onClick={handleSave}>Save</button>
+      </Link>
+      <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`}>
+        <button onClick={handleSaveAndPublish}>Save & Publish</button>
+      </Link>
+      <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`}>
+        <button onClick={handleCancel}>Cancel</button>
+      </Link>
     </div>
   );
 }

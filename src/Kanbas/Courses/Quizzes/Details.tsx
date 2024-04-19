@@ -30,7 +30,7 @@ function QuizDetails() {
     <div>
       <h2>Quiz Details</h2>
       {/* Display quiz properties */}
-      <p>Quiz Type: {quiz.type}</p>
+      <p>Quiz Type: {quiz.quizType}</p>
       <p>Points: {quiz.points}</p>
       <p>Assignment Group: {quiz.assignmentGroup}</p>
       <p>Shuffle Answers: {quiz.shuffleAnswers ? "Yes" : "No"}</p>
