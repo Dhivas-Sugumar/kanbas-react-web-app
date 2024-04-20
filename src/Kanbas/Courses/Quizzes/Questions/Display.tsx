@@ -1,19 +1,21 @@
 import { Question } from "../../../store";
+import ChoiceDisplay from "./ChoiceDisplay";
+import MultipleBlanksDisplay from "./MultipleBlanksDisplay";
 
-const QuestionDisplay = ({ question }: { question: Question }) => {
+const QuestionDisplay = (question: Question) => {
   return (
     <div>
       <h3>{question.title}</h3>
       <p>{question.question}</p>
-      <ul>
-        {question.choices.map((choice) => {
-          return (
-            <li key={choice}>
-              {choice}
-            </li>
-          );
-        })}
-      </ul>
+      {question.questionType === "Multiple Choice" && (
+        <ChoiceDisplay question={question} />
+      )}
+      {question.questionType === "Multiple Blanks" && (
+        <MultipleBlanksDisplay question={question} />
+      )}
+      {question.questionType === "True/False" && (
+        <ChoiceDisplay question={question} />
+      )}
     </div>
   )
 }
