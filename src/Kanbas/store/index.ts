@@ -43,6 +43,7 @@ export interface Question {
   choices: string[];
   quizId: string;
   quizOrder: number;
+  createdAt: string;
 }
 
 export interface ModuleState {

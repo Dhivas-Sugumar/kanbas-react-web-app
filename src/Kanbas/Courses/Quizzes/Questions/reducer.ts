@@ -12,8 +12,9 @@ const initialState: QuestionState = {
         correctAnswers: [""],
         choices: ["Choice 1"],
         quizId: "test",
-        quizOrder: 1
-    }
+        quizOrder: 1,
+        createdAt: "2021-01-01T00:00:00.000Z"
+    },
 }
 
 const questionsSlice = createSlice({
