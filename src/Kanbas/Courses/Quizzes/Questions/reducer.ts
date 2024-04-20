@@ -9,7 +9,7 @@ const initialState: QuestionState = {
         points: 10,
         questionType: "Multiple Choice",
         question: "New Question",
-        correctAnswer: "New Answer",
+        correctAnswer: ["New Answer"],
         choices: ["Choice 1", "Choice 2", "Choice 3"],
         quizId: "test",
         quizOrder: 1

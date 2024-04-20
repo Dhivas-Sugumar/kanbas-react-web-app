@@ -6,7 +6,7 @@ import MultipleChoiceEdit from "./MultipleChoiceEdit";
 import TrueFalseEdit from "./TrueFalseEdit";
 
 const EditQuestion = () => {
-    const question = useSelector((state: KanbasState) => state.questionsReducer.quiz);
+    const question: Question = useSelector((state: KanbasState) => state.questionsReducer.question);
     const dispatch = useDispatch();
     // Functionality in here
     return (
@@ -23,9 +23,9 @@ const EditQuestion = () => {
         Question:
         <textarea value={question.question} />
       </label>  
-      {question.type === "multiple_choice" && <MultipleChoiceEdit  />}
-      {question.type === "multiple_blanks" && <MultipleBlanksEdit question={question} />} 
-      {question.type === "true_false" && <TrueFalseEdit />}   
+      {question.questionType === "Multiple Choice" && <MultipleChoiceEdit question={question} />}
+      {question.questionType === "Multiple Blanks" && <MultipleBlanksEdit question={question} />} 
+      {question.questionType === "True/False" && <TrueFalseEdit question={question} />}   
       </div>
     );
 }

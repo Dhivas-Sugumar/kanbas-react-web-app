@@ -39,7 +39,7 @@ export interface Question {
   points: number;
   questionType: "Multiple Choice" | "True/False" | "Multiple Blanks";
   question: string;
-  correctAnswer: string;
+  correctAnswer: string[];
   choices: string[];
   quizId: string;
   quizOrder: number;

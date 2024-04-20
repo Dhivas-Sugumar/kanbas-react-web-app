@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { findQuizById } from "./client";
+import * as questionsClient from "./Questions/client";
+import { useDispatch } from "react-redux";
+import { setQuestions } from "./Questions/reducer";
 function QuizDetails() {
   const { quizId } = useParams();
   const [quiz, setQuiz] = useState<any>({ _id: "" });
@@ -8,8 +11,17 @@ function QuizDetails() {
     const quiz = await findQuizById(quizId);
     setQuiz(quiz);
   }
+
+  const dispatch = useDispatch();
+
+  const fetchQuestions = async (quizId?: string) => {
+    const questions = await questionsClient.findQuestionsForQuiz(quizId);
+    dispatch(setQuestions(questions));
+  }
+
   useEffect(() => {
     fetchQuiz(quizId);
+    fetchQuestions(quizId);
   }, [quizId]);
 
   const handlePublish = () => {

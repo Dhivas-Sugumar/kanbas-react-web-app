@@ -1,12 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { KanbasState } from "../../../store";
+import { KanbasState, Question } from "../../../store";
 import { useParams } from "react-router";
 import { setQuestion } from "./reducer";
 import { useEffect } from "react";
 
-const TrueFalseEdit = () => {
-
-    const question = useSelector((state: KanbasState) => state.questionsReducer.question);
+const TrueFalseEdit = ({question}: {question: Question}) => {
     const {quizId} = useParams();
     const dispatch = useDispatch();
 
