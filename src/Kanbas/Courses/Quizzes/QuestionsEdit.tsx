@@ -5,6 +5,7 @@ import EditQuestion from "./Questions/Edit";
 import { addQuestion, updateQuestion } from "./Questions/reducer";
 import * as client from "./Questions/client";
 import { useParams } from "react-router";
+import { Button } from "react-bootstrap";
 
 const EditQuestions = () => {
     const {quizId} = useParams();
@@ -32,8 +33,7 @@ const EditQuestions = () => {
                 ))}
             </ul>
             <EditQuestion/>
-            <button onClick={handleNewQuestion}>New Question</button>
-            <button onClick={handleUpdateQuestion}>Update Question</button>
+            <Button className="btn btn-success my-2" onClick={handleNewQuestion}>New Question</Button>
         </div>
     );
 }

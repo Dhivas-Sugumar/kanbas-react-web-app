@@ -2,15 +2,17 @@ import { Question } from "../../../store";
 
 const MultipleBlanksDisplay = ({question} : {question: Question}) => {
   return(
-    <div>
-      <ul>
-        {question.choices.map((choice) => {
-          return (
-            <input key={choice} type="text" />
-          );
-        })}
-      </ul>
-    </div>
+<div className="container">
+  <ul className="list-group">
+    {question.choices.map((choice) => {
+      return (
+        <li key={choice} className="list-group-item">
+          <input type="text" className="form-control" />
+        </li>
+      );
+    })}
+  </ul>
+</div>
   )
 }
 

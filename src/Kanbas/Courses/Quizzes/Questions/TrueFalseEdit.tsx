@@ -23,25 +23,33 @@ const TrueFalseEdit = ({ question }: { question: Question }) => {
       
     return (
         <div>
-            <label>
-                <input
-                    type="radio"
-                    value="True"
-                    name="trueFalse"
-                    onClick={() => handleRadioChange("True")}
-                />
-                True
-            </label>
-            <label>
-                <input
-                    type="radio"
-                    value="False"
-                    name="trueFalse"
-                    onClick={() => handleRadioChange("False")}
-                />
-                False
-            </label>
-        </div>
+      <div className="form-check">
+        <input
+          type="radio"
+          className="form-check-input"
+          id="trueOption"
+          value="True"
+          name="trueFalse"
+          onClick={() => handleRadioChange("True")}
+        />
+        <label className="form-check-label" htmlFor="trueOption">
+          True
+        </label>
+      </div>
+      <div className="form-check">
+        <input
+          type="radio"
+          className="form-check-input"
+          id="falseOption"
+          value="False"
+          name="trueFalse"
+          onClick={() => handleRadioChange("False")}
+        />
+        <label className="form-check-label" htmlFor="falseOption">
+          False
+        </label>
+      </div>
+    </div>
     )
 }
 

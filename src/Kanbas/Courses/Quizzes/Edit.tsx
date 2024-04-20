@@ -4,7 +4,7 @@ import * as client from "./client";
 import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../../store";
 import { setQuiz, setQuizById, updateQuiz } from "./reducer";
-import { Dropdown } from "react-bootstrap";
+import { Button, Dropdown } from "react-bootstrap";
 import DetailsEdit from "./DetailsEdit";
 import EditQuestions from "./QuestionsEdit";
 function QuizEditor() {
@@ -53,8 +53,8 @@ function QuizEditor() {
       <h2>Quiz Editor</h2>
       {/* Tab navigation */}
       <div>
-        <button onClick={() => setActiveTab("details")}>Details</button>
-        <button onClick={() => setActiveTab("questions")}>Questions</button>
+        <Button onClick={() => setActiveTab("details")}>Details</Button>
+        <Button onClick={() => setActiveTab("questions")}>Questions</Button>
       </div>
       {activeTab === "details" && (
         <DetailsEdit/>
@@ -67,13 +67,13 @@ function QuizEditor() {
       )}
       {/* Buttons */}
       <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`}>
-        <button onClick={handleSave}>Save</button>
+        <Button className="mx-2" onClick={handleSave}>Save</Button>
       </Link>
       <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`}>
-        <button onClick={handleSaveAndPublish}>Save & Publish</button>
+        <Button className="mx-2" onClick={handleSaveAndPublish}>Save & Publish</Button>
       </Link>
       <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`}>
-        <button onClick={handleCancel}>Cancel</button>
+        <Button className="mx-2" onClick={handleCancel}>Cancel</Button>
       </Link>
     </div>
   );
