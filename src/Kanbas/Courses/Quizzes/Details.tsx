@@ -55,7 +55,7 @@ function QuizDetails() {
         <Button className="mx-2"> <FaPenFancy /> Edit</Button>
       </Link>
       <hr />
-      <h2>Quiz Details</h2>
+      <h2>{quiz.title}</h2>
       {/* Display quiz properties */}
       <p><strong>Quiz Type:</strong> {quiz.quizType}</p>
       <p><strong>Points:</strong> {quiz.points}</p>
