@@ -15,12 +15,18 @@ const PreviewQuiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [isOneQuestionAtATime, setIsOneQuestionAtATime] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   client.findQuestionsForQuiz(quizId)
-  //     .then((questions) =>
-  //       dispatch(setQuestions(questions))
-  //   );
-  // }, [quizId]);
+  function shuffleArray(oldArray: any[]) {
+    const array = [...oldArray];
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
+
+const displayQuestions = quiz.shuffleAnswers ? shuffleArray(questions) : questions;
 
   useEffect(() => {
     setIsOneQuestionAtATime(quiz.oneQuestionAtATime);
@@ -39,7 +45,7 @@ const PreviewQuiz = () => {
       <h2>{quiz.title}</h2>
       {isOneQuestionAtATime ? (
         <div>
-          <h3>{questions[currentQuestion]?.title}</h3>
+          <h3>{displayQuestions[currentQuestion]?.title}</h3>
           <QuestionDisplay question={questions[currentQuestion]} isPreview={true}/>
           <button onClick={handlePreviousQuestion} disabled={currentQuestion === 0}>
             Previous
@@ -50,7 +56,7 @@ const PreviewQuiz = () => {
         </div>
       ) : (
         <ul>
-          {questions.map((question) => (
+          {displayQuestions.map((question) => (
             <li key={question._id}>
               <QuestionDisplay question={question} isPreview={true}/>
             </li>
