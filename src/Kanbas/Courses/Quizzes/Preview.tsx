@@ -40,6 +40,9 @@ const displayQuestions = quiz.shuffleAnswers ? shuffleArray(questions) : questio
     setCurrentQuestion((prevQuestion) => prevQuestion - 1);
   };
 
+
+  
+
   return (
     <div>
       <h2>{quiz.title}</h2>

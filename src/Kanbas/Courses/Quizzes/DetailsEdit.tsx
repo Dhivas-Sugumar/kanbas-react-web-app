@@ -8,7 +8,7 @@ function DetailsEdit() {
   const dispatch = useDispatch();
   const quizDetails = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
   const quizTypes = ["Graded Quiz", "Practice Quiz", "Graded Survey", "Ungraded Survey"];
-  const assignmentGroups = ["Assignments", "Quizzes", "Exam", "Project"];
+  const assignmentGroups = ["Assignments", "Quizzes", "Exams", "Projects"];
 
   const handleQuizTypeChange = (type: string) => {
     dispatch(setQuiz({ ...quizDetails, quizType: type }));
