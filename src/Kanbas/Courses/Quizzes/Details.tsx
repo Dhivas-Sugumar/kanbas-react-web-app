@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setQuestions } from "./Questions/reducer";
 import { Button } from "react-bootstrap";
 import { setQuizById, updateQuiz } from "./reducer";
-import { FaCheckCircle, FaPenFancy } from "react-icons/fa";
+import { FaCheckCircle, FaCross, FaPenFancy, FaTimes } from "react-icons/fa";
 import { KanbasState } from "../../store";
 function QuizDetails() {
   const { quizId } = useParams();
@@ -14,7 +14,6 @@ function QuizDetails() {
   const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
 
   const dispatch = useDispatch();
-  const navigator = useNavigate();
 
   const fetchQuestions = async (quizId?: string) => {
     const questions = await questionsClient.findQuestionsForQuiz(quizId);
@@ -32,20 +31,14 @@ function QuizDetails() {
     dispatch(updateQuiz({...quiz, published: published}));
   }
 
-  const handlePreview = () => {
-    // Navigate to Quiz Preview screen
-  };
-
-  const handleEdit = () => {
-    navigator(`/Kanbas/Courses/${quiz.course}/Quizzes/${quiz._id}/edit`);
-  };
-
   return (
     <div>
       {/* Buttons */}
-      <Button className="btn btn-success mx-2" onClick={handlePublishQuiz}> <FaCheckCircle />  Publish</Button>
+      <Button className={`btn btn-${quiz.published ? "success" : "danger"} mx-2`} onClick={handlePublishQuiz}>{quiz.published ? 
+      <span><FaCheckCircle />  Published</span> : 
+      <span><FaTimes/> UnPublished</span>  } </Button>
       <Link to={`/Kanbas/Courses/${quiz.course}/Quizzes/${quiz._id}/preview`}>
-        <Button className="mx-2" onClick={handlePreview}>Preview</Button>
+        <Button className="mx-2">Preview</Button>
       </Link>
       <Link to={`/Kanbas/Courses/${quiz.course}/Quizzes/${quiz._id}/edit`}>
         <Button className="mx-2"> <FaPenFancy /> Edit</Button>

@@ -9,14 +9,6 @@ import DetailsEdit from "./DetailsEdit";
 import EditQuestions from "./QuestionsEdit";
 function QuizEditor() {
   const { courseId, quizId } = useParams();
-  // Quiz details state
-  // const [quizDetails, setQuizDetails] = useState<any>()
-
-  // useEffect(() => {
-  //   const quiz = client.findQuizById(quizId);
-
-  // }, [quizId]);
-
   
   const quizDetails = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
   const dispatch = useDispatch();
