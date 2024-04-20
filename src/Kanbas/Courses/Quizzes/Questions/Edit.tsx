@@ -10,11 +10,10 @@ import { Dropdown } from "react-bootstrap";
 const EditQuestion = () => {
     const question: Question = useSelector((state: KanbasState) => state.questionsReducer.question);
     const dispatch = useDispatch();
-    // Functionality in here
-    console.log(question.questionType);
+    
     return (
         <div>
-              <Dropdown onSelect={(e) => dispatch(setQuestion({...question, questionType: e}))}>
+              <Dropdown onSelect={(e) => dispatch(setQuestion({...question, questionType: e, correctAnswer: [], choices: []}))}>
       <Dropdown.Toggle variant="primary" id="quiz-type-dropdown">
         {question.questionType ? question.questionType : 'Select Quiz Type'}
       </Dropdown.Toggle>
