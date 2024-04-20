@@ -15,12 +15,12 @@ const PreviewQuiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [isOneQuestionAtATime, setIsOneQuestionAtATime] = useState<boolean>(false);
 
-  useEffect(() => {
-    client.findQuestionsForQuiz(quizId)
-      .then((questions) =>
-        dispatch(setQuestions(questions))
-    );
-  }, [quizId]);
+  // useEffect(() => {
+  //   client.findQuestionsForQuiz(quizId)
+  //     .then((questions) =>
+  //       dispatch(setQuestions(questions))
+  //   );
+  // }, [quizId]);
 
   useEffect(() => {
     setIsOneQuestionAtATime(quiz.oneQuestionAtATime);
@@ -40,7 +40,7 @@ const PreviewQuiz = () => {
       {isOneQuestionAtATime ? (
         <div>
           <h3>{questions[currentQuestion]?.title}</h3>
-          <QuestionDisplay question={questions[currentQuestion]} />
+          <QuestionDisplay question={questions[currentQuestion]} isPreview={true}/>
           <button onClick={handlePreviousQuestion} disabled={currentQuestion === 0}>
             Previous
           </button>
@@ -52,7 +52,7 @@ const PreviewQuiz = () => {
         <ul>
           {questions.map((question) => (
             <li key={question._id}>
-              <QuestionDisplay question={question} />
+              <QuestionDisplay question={question} isPreview={true}/>
             </li>
           ))}
         </ul>

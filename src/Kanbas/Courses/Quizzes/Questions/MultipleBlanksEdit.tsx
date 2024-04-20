@@ -10,7 +10,8 @@ const MultipleBlanksEdit = ({question}: {question: Question}) => {
   }
 
   const handleRemoveBlank = (index: number) => {
-    dispatch(setQuestion({...question, choices: question.choices.filter((choice, i) => i !== index)}));
+    dispatch(setQuestion({...question, choices: question.choices.filter((choice, i) => i !== index),
+    correctAnswers: question.correctAnswers.filter((c, i) => i !== index)}));
   }
 
   const handleUpdateCorrectAnswer = (index: number, val: string) => {

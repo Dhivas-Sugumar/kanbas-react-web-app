@@ -5,7 +5,7 @@ import MultipleBlanksDisplay from "./MultipleBlanksDisplay";
 import { deleteQuestion, setQuestion } from "./reducer";
 import * as client from "./client";
 
-const QuestionDisplay = ({question} : {question: Question}) => {
+const QuestionDisplay = ({question, isPreview} : {question: Question, isPreview: boolean}) => {
   const dispatch = useDispatch();
   
   const handleDelete = () => {
@@ -26,8 +26,12 @@ const QuestionDisplay = ({question} : {question: Question}) => {
       {question.questionType === "trueFalse" && (
         <ChoiceDisplay question={question} />
       )}
+      {isPreview ? <></>
+      :
+      <>
       <button className="btn btn-success" onClick={() => dispatch(setQuestion(question))}>Edit</button>
       <button className="btn btn-danger" onClick={handleDelete}>Delete</button>
+      </>}
     </div> 
   )
 }

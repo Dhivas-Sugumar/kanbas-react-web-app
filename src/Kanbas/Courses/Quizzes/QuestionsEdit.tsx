@@ -27,7 +27,7 @@ const EditQuestions = () => {
             <ul>
                 {questions.map((question, index) => (
                     <li key={index}>
-                        <QuestionDisplay question={question} />
+                        <QuestionDisplay question={question} isPreview={false}/>
                     </li>
                 ))}
             </ul>

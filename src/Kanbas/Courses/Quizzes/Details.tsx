@@ -59,7 +59,9 @@ function QuizDetails() {
 
       {/* Buttons */}
       <button onClick={handlePublish}>Publish</button>
-      <button onClick={handlePreview}>Preview</button>
+      <Link to={`/Kanbas/Courses/${quiz.course}/Quizzes/${quiz._id}/preview`}>
+        <button onClick={handlePreview}>Preview</button>
+      </Link>
       <Link to={`/Kanbas/Courses/${quiz.course}/Quizzes/${quiz._id}/edit`}>
         <button onClick={handleEdit}>Edit</button>
       </Link>
