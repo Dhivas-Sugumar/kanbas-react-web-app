@@ -1,7 +1,7 @@
 import { Form } from "react-bootstrap";
 import { Question } from "../../../store";
 
-const ChoiceDisplay = (question : Question) => {
+const ChoiceDisplay = ({question}: {question: Question}) => {
   return (
     <div>
       <Form>
