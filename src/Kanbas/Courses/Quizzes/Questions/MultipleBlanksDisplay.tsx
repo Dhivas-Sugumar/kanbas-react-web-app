@@ -1,6 +1,6 @@
 import { Question } from "../../../store";
 
-const MultipleBlanksDisplay = (question : Question) => {
+const MultipleBlanksDisplay = ({question} : {question: Question}) => {
   return(
     <div>
       <ul>

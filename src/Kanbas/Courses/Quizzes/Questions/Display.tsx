@@ -2,7 +2,7 @@ import { Question } from "../../../store";
 import ChoiceDisplay from "./ChoiceDisplay";
 import MultipleBlanksDisplay from "./MultipleBlanksDisplay";
 
-const QuestionDisplay = (question: Question) => {
+const QuestionDisplay = ({question} : {question: Question}) => {
   return (
     <div>
       <h3>{question.title}</h3>
