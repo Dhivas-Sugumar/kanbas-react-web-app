@@ -13,6 +13,7 @@ const EditQuestions = () => {
     const question = useSelector((state: KanbasState) => state.questionsReducer.question);
 
     const handleNewQuestion = async () => {
+        console.log(question);
         const res = await client.createQuestion(quizId, question)
         dispatch(addQuestion(res));
     }

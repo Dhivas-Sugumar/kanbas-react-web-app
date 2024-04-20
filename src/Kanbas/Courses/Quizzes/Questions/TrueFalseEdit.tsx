@@ -4,30 +4,43 @@ import { useParams } from "react-router";
 import { setQuestion } from "./reducer";
 import { useEffect } from "react";
 
-const TrueFalseEdit = ({question}: {question: Question}) => {
-    const {quizId} = useParams();
+const TrueFalseEdit = ({ question }: { question: Question }) => {
+    const { quizId } = useParams();
     const dispatch = useDispatch();
 
-    useEffect(()=>{
-        dispatch(setQuestion({...question, type: "True/False", answer: "", choices: ["", ""]}));
+    useEffect(() => {
+        dispatch(setQuestion({ ...question, type: "trueFalse", correctAnswers: [""], choices: ["True", "False"] }));
     }, [quizId])
 
-    const handleTrue = (answer: string) => {
-        dispatch(setQuestion({...question, answer: answer, choices:[answer, question.choices[1]]}));
-    }
-    const handleFalse = (answer: string) => {
-        dispatch(setQuestion({...question, choices:[question.choices[0], answer]}));
-    }
+    const handleRadioChange = (answer: string) => {
+        dispatch(
+          setQuestion({
+            ...question,
+            correctAnswers: [answer],
+          })
+        );
+      };
+      
     return (
         <div>
-            <input type="text"
-            value={question.choices[0]}
-            onChange={(e)=> handleTrue(e.target.value)}/>
-            <label>True</label>
-            <input type="text"
-            value={question.choices[1]}
-            onChange={(e)=> handleFalse(e.target.value)}/>
-            <label>True</label>
+            <label>
+                <input
+                    type="radio"
+                    value="True"
+                    name="trueFalse"
+                    onClick={() => handleRadioChange("True")}
+                />
+                True
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    value="False"
+                    name="trueFalse"
+                    onClick={() => handleRadioChange("False")}
+                />
+                False
+            </label>
         </div>
     )
 }

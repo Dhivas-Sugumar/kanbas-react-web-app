@@ -16,7 +16,7 @@ const MultipleChoiceEdit = ({question}: {question: Question}) => {
 
   const handleRemoveChoice = (index: number) => {
     const answer = question.choices[index];
-    dispatch(setQuestion({...question, correctAnswer: question.correctAnswer.filter((choice, i) => answer=== choice),
+    dispatch(setQuestion({...question, correctAnswer: question.correctAnswers.filter((choice, i) => answer=== choice),
        choices: question.choices.filter((choice, i) => i !== index)}));
   }
   return(
@@ -26,11 +26,13 @@ const MultipleChoiceEdit = ({question}: {question: Question}) => {
           <li key={index}>
             <input type="text" value={choice} 
             onChange={(e) => dispatch(setQuestion({...question, choices: question.choices.map((c, i) => i === index ? e.target.value : c)}))}/>
-            {choice === question.correctAnswer[0] ? <span>Correct</span> : <button onClick={()=> handleMarkAsCorrect(index)}>Mark as Correct</button>}
+            {choice === question.correctAnswers[0] ? <span>Correct</span> : <button onClick={()=> handleMarkAsCorrect(index)}>Mark as Correct</button>}
             <button onClick={()=> handleRemoveChoice(index)}>Remove</button>
           </li>
         ))}
       </ul>
+      <button className="btn btn-success" onClick={handleAddNewChoice}>Add New Choice</button>
+
     </div>)
 }
 

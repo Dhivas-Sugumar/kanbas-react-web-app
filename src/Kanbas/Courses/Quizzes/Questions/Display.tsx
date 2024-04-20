@@ -7,13 +7,13 @@ const QuestionDisplay = ({question} : {question: Question}) => {
     <div>
       <h3>{question.title}</h3>
       <p>{question.question}</p>
-      {question.questionType === "Multiple Choice" && (
+      {question.questionType === "multipleChoice" && (
         <ChoiceDisplay question={question} />
       )}
-      {question.questionType === "Multiple Blanks" && (
+      {question.questionType === "multipleBlanks" && (
         <MultipleBlanksDisplay question={question} />
       )}
-      {question.questionType === "True/False" && (
+      {question.questionType === "trueFalse" && (
         <ChoiceDisplay question={question} />
       )}
     </div>

@@ -6,7 +6,7 @@ const MultipleBlanksEdit = ({question}: {question: Question}) => {
 
   const dispatch = useDispatch();
   const handleAddNewBlank = () => {
-    dispatch(setQuestion({...question, choices: [...question.choices, ""], correctAnswer: [...question.correctAnswer, ""]}));
+    dispatch(setQuestion({...question, choices: [...question.choices, ""], correctAnswer: [...question.correctAnswers, ""]}));
   }
 
   const handleRemoveBlank = (index: number) => {
@@ -14,13 +14,13 @@ const MultipleBlanksEdit = ({question}: {question: Question}) => {
   }
 
   const handleUpdateCorrectAnswer = (index: number, val: string) => {
-    dispatch(setQuestion({...question, correctAnswer: question.correctAnswer.map((c, i) => i === index ? val : c)}));
+    dispatch(setQuestion({...question, correctAnswer: question.correctAnswers.map((c, i) => i === index ? val : c)}));
   }
 
   return(
     <div>
       <ul>
-        {question.correctAnswer.map((answer, index) => (
+        {question.correctAnswers.map((answer, index) => (
           <li key={index}>
             <input type="text" value={answer} 
             onChange={(e) => handleUpdateCorrectAnswer(index, e.target.value)}/>

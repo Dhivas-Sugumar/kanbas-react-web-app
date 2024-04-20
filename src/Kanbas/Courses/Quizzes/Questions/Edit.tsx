@@ -5,13 +5,25 @@ import MultipleBlanksEdit from "./MultipleBlanksEdit";
 import MultipleChoiceEdit from "./MultipleChoiceEdit";
 import TrueFalseEdit from "./TrueFalseEdit";
 import { setQuestion } from "./reducer";
+import { Dropdown } from "react-bootstrap";
 
 const EditQuestion = () => {
     const question: Question = useSelector((state: KanbasState) => state.questionsReducer.question);
     const dispatch = useDispatch();
     // Functionality in here
+    console.log(question.questionType);
     return (
         <div>
+              <Dropdown onSelect={(e) => dispatch(setQuestion({...question, questionType: e}))}>
+      <Dropdown.Toggle variant="primary" id="quiz-type-dropdown">
+        {question.questionType ? question.questionType : 'Select Quiz Type'}
+      </Dropdown.Toggle>
+      <Dropdown.Menu>
+        <Dropdown.Item eventKey="trueFalse">True/False</Dropdown.Item>
+        <Dropdown.Item eventKey="multipleChoice">Multiple Choice</Dropdown.Item>
+        <Dropdown.Item eventKey="multipleBlanks">Multiple Blanks</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
       <label>
         Title:
         <input type="text" value={question.title} 
@@ -27,9 +39,9 @@ const EditQuestion = () => {
         <textarea value={question.question} 
         onChange={(e) => dispatch(setQuestion({...question, question: e.target.value}))}/>
       </label>  
-      {question.questionType === "Multiple Choice" && <MultipleChoiceEdit question={question} />}
-      {question.questionType === "Multiple Blanks" && <MultipleBlanksEdit question={question} />} 
-      {question.questionType === "True/False" && <TrueFalseEdit question={question} />}   
+      {question.questionType === "multipleChoice" && <MultipleChoiceEdit question={question} />}
+      {question.questionType === "multipleBlanks" && <MultipleBlanksEdit question={question} />} 
+      {question.questionType === "trueFalse" && <TrueFalseEdit question={question} />}   
       </div>
     );
 }
