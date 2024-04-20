@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import { FaEllipsisV, FaCheckCircle, FaPlusCircle, FaRocket } from "react-icons/fa";
-import { useParams } from "react-router";
+import { FaEllipsisV, FaCheckCircle, FaPlusCircle, FaRocket, FaTimesCircle } from "react-icons/fa";
+import { useNavigate, useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addQuiz,
@@ -17,14 +17,8 @@ import { Link } from "react-router-dom";
 
 function QuizList() {
   const { courseId } = useParams();
-  console.log("Course ID", courseId);
-  useEffect(() => {
-    console.log("Finding quizzes for course", courseId);
-    // client.findQuizzesForCourse(courseId)
-    //   .then((quizzes) =>
-    //     dispatch(setQuizzes(quizzes))
-    //   );
-  }, [courseId]);
+
+  const navigate = useNavigate();
 
   const quizList = useSelector((state: KanbasState) =>
     state.quizzesReducer.quizzes
@@ -32,19 +26,16 @@ function QuizList() {
   const quiz = useSelector((state: KanbasState) =>
     state.quizzesReducer.quiz
   );
+  const now = new Date();
+  const isQuizOpen = new Date(quiz.availableDate) <= now;
+  const isQuizClosed = new Date(quiz.dueDate) <= now;
+  const isQuizAvailable = isQuizOpen && !isQuizClosed;
 
-  const handleAddQuiz = () => {
-    client.createQuiz(courseId, quiz).then((quiz) => {
-      dispatch(addQuiz(quiz));
-    });
-  };
+
   const handleDeleteQuiz = (quizId: string) => {
     client.deleteQuiz(quizId).then(() => {
       dispatch(deleteQuiz(quizId));
     });
-  };
-  const handleUpdateQuiz = async () => {
-    
   };
 
   const handlePublishQuiz = async (quiz: any) => {
@@ -55,13 +46,10 @@ function QuizList() {
 
   const handleEditQuiz = () => {
     // Navigate to Quiz Details screen
+    
   }
 
   const quizLineItemDateHelper = (quiz: Quiz) => {
-    const now = new Date();
-    const isQuizOpen = new Date(quiz.availableDate) <= now;
-    const isQuizClosed = new Date(quiz.dueDate) <= now;
-    const isQuizAvailable = isQuizOpen && !isQuizClosed;
     if (isQuizAvailable) {
       return `Available | Due ${quiz.dueDate}`;
     }
@@ -79,23 +67,6 @@ function QuizList() {
   return (
     <>
       <ul className="list-group wd-quizzes">
-        <li className="list-group-item">
-          <button onClick={handleAddQuiz}>Add Quiz</button>
-          <button onClick={handleUpdateQuiz}>Update Quiz</button>
-          <input
-            value={quiz.title}
-            onChange={(e) =>
-              dispatch(setQuiz({ ...quiz, title: e.target.value }))
-            }
-          />
-          <textarea
-            value={quiz.description}
-            onChange={(e) =>
-              dispatch(setQuiz({ ...quiz, description: e.target.value }))
-            }
-          />
-        </li>
-
         {quizList
           .filter((quiz) => quiz.course === courseId)
           .map((quiz, index) => (
@@ -115,16 +86,16 @@ function QuizList() {
                 </div>
                 </div>
                 <span className="float-end">
-                  <FaCheckCircle className="text-success" />
+                  {isQuizAvailable ? <FaCheckCircle className="text-success" /> : <FaTimesCircle />}
                   <div className="wd-modules-header-buttons-container">
       <Dropdown className="ml-auto">
         <Dropdown.Toggle variant="secondary" id="dropdownMenuButton">
           <FaEllipsisV />
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item onClick={handleUpdateQuiz}>Edit</Dropdown.Item>
+          <Dropdown.Item onClick={handleEditQuiz}>Edit</Dropdown.Item>
           <Dropdown.Item onClick={() => {handleDeleteQuiz(quiz._id)}}>Delete</Dropdown.Item>
-          <Dropdown.Item onClick={() => {handlePublishQuiz(quiz)}}>Publish</Dropdown.Item>
+          <Dropdown.Item onClick={() => {handlePublishQuiz(quiz)}}>{quiz.published}</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </div>

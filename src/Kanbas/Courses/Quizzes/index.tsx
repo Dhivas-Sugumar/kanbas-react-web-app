@@ -5,10 +5,18 @@ import "../../styles.css";
 import { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import QuizEditor from "./Edit";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate, useParams } from "react-router-dom";
 import QuizDetails from "./Details";
+import * as client from "./client";
+import { useSelector, useDispatch } from "react-redux";
+import { addQuiz } from "./reducer";
+
 
 export const QuizzesHeaderButtons = () => {
+  const { courseId } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleEdit = () => {
     // Navigate to Quiz Details screen
   };
@@ -21,12 +29,29 @@ export const QuizzesHeaderButtons = () => {
   const handlePublish = () => {
     // Publish or unpublish the quiz
   };
+  const handleAddQuiz = () => {
+    const newQuiz = {
+      title: "New Quiz",
+      questions: [],
+      points: 0,
+      availableDate: new Date(),
+      dueDate: new Date(),
+      published: false,
+      course: courseId,
+    };
+    client.createQuiz(courseId,newQuiz).then((quiz) => {
+      dispatch(addQuiz(quiz));
+      navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}`);
+    });
+
+  };
 
   return (
     <div className="wd-modules-header-buttons-container">
       <button
         style={{ backgroundColor: "red", color: "white" }}
         className="wd-modules-header-button ml-auto"
+        onClick={handleAddQuiz}
       >
         <FaPlus /> Quiz
       </button>
