@@ -2,18 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import * as questionsClient from "./Questions/client";
 import * as client from "./client";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setQuestions } from "./Questions/reducer";
 import { Button } from "react-bootstrap";
-import { updateQuiz } from "./reducer";
+import { setQuizById, updateQuiz } from "./reducer";
 import { FaCheckCircle, FaPenFancy } from "react-icons/fa";
+import { KanbasState } from "../../store";
 function QuizDetails() {
   const { quizId } = useParams();
-  const [quiz, setQuiz] = useState<any>({ _id: "" });
-  const fetchQuiz = async (quizId?: string) => {
-    const quiz = await client.findQuizById(quizId);
-    setQuiz(quiz);
-  }
+  
+  const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
 
   const dispatch = useDispatch();
   const navigator = useNavigate();
@@ -24,14 +22,14 @@ function QuizDetails() {
   }
 
   useEffect(() => {
-    fetchQuiz(quizId);
+    dispatch(setQuizById(quizId))
     fetchQuestions(quizId);
   }, [quizId]);
 
-  const handlePublishQuiz = async (quiz: any) => {
-    const newQuiz = { ...quiz, published: !quiz.published };
-    await client.updateQuiz(newQuiz);
-    dispatch(updateQuiz(newQuiz));
+  const handlePublishQuiz = async () => {
+    const published = !quiz.published;
+    await client.updateQuiz({...quiz, published: published});
+    dispatch(updateQuiz({...quiz, published: published}));
   }
 
   const handlePreview = () => {
@@ -41,8 +39,6 @@ function QuizDetails() {
   const handleEdit = () => {
     navigator(`/Kanbas/Courses/${quiz.course}/Quizzes/${quiz._id}/edit`);
   };
-
-
 
   return (
     <div>
@@ -68,9 +64,9 @@ function QuizDetails() {
       <p><strong>One Question at a Time:</strong> {quiz.oneQuestionAtATime ? "Yes" : "No"}</p>
       <p><strong>Webcam Required:</strong> {quiz.webcamRequired ? "Yes" : "No"}</p>
       <p><strong>Lock Questions After Answering:</strong> {quiz.lockQuestionsAfterAnswering ? "Yes" : "No"}</p>
-      <p><strong>Due Date:</strong> {quiz.dueDate}</p>
-      <p><strong>Available Date:</strong> {quiz.availableDate}</p>
-      <p><strong>Until Date:</strong> {quiz.untilDate}</p>
+      <p><strong>Due Date:</strong> {quiz.dueDate.toLocaleString()}</p>
+      <p><strong>Available Date:</strong> {quiz.availableDate.toLocaleString()}</p>
+      <p><strong>Until Date:</strong> {quiz.untilDate.toLocaleString()}</p>
 
     </div>
   );
