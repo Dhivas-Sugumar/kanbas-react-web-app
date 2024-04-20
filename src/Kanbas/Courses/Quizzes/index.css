@@ -56,3 +56,20 @@ list-group-item-heading {
 .wd-modules-header-button i {
   margin-right: 4px;
 }
+
+.quiz-description-lable{
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-description-textarea{
+  width:90%;
+}
+
+.dropdown-lable{
+  margin-right: 10px;
+}
+
+.dates-card{
+  max-width: 200px;
+}
