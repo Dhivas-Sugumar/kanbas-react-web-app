@@ -10,6 +10,7 @@ import QuizDetails from "./Details";
 import * as client from "./client";
 import { useSelector, useDispatch } from "react-redux";
 import { addQuiz } from "./reducer";
+import { KanbasState } from "../../store";
 
 
 export const QuizzesHeaderButtons = () => {
@@ -29,21 +30,13 @@ export const QuizzesHeaderButtons = () => {
   const handlePublish = () => {
     // Publish or unpublish the quiz
   };
-  const handleAddQuiz = () => {
-    const newQuiz = {
-      title: "New Quiz",
-      questions: [],
-      points: 0,
-      availableDate: new Date(),
-      dueDate: new Date(),
-      published: false,
-      course: courseId,
-    };
-    client.createQuiz(courseId,newQuiz).then((quiz) => {
-      dispatch(addQuiz(quiz));
-      navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}`);
-    });
+  const quizDetails = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
 
+  const handleAddQuiz = () => {
+    client.createQuiz(courseId,quizDetails).then((quiz) => {
+      dispatch(addQuiz(quiz));
+      navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}/edit`);
+    });
   };
 
   return (
