@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import { FaEllipsisV, FaCheckCircle, FaPlusCircle } from "react-icons/fa";
+import { FaEllipsisV, FaCheckCircle, FaPlusCircle, FaRocket } from "react-icons/fa";
 import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -10,7 +10,7 @@ import {
   setQuiz,
   setQuizzes,
 } from "./reducer";
-import { KanbasState } from "../../store";
+import { KanbasState, Quiz } from "../../store";
 import * as client from "./client";
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -44,8 +44,7 @@ function QuizList() {
     });
   };
   const handleUpdateQuiz = async () => {
-    await client.updateQuiz(quiz);
-    dispatch(updateQuiz(quiz));
+    
   };
 
   const handlePublishQuiz = async (quiz: any) => {
@@ -58,6 +57,22 @@ function QuizList() {
     // Navigate to Quiz Details screen
   }
 
+  const quizLineItemDateHelper = (quiz: Quiz) => {
+    const now = new Date();
+    const isQuizOpen = new Date(quiz.availableDate) <= now;
+    const isQuizClosed = new Date(quiz.dueDate) <= now;
+    const isQuizAvailable = isQuizOpen && !isQuizClosed;
+    if (isQuizAvailable) {
+      return `Available | Due ${quiz.dueDate}`;
+    }
+    if(!isQuizOpen) { 
+      return `Not Available until ${quiz.availableDate}`;
+    }
+    if (isQuizClosed) {
+      return `Closed | Due ${quiz.dueDate}`;
+    }
+    
+  }
 
   const dispatch = useDispatch();
 
@@ -89,12 +104,18 @@ function QuizList() {
               key={index}
             >
               <div>
-                <FaEllipsisV className="me-2" />
+                <FaRocket />
+                <div>
                 <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}`}>
                     {quiz.title} </Link>
+                <div>
+                  <span>
+                    {`${quizLineItemDateHelper(quiz)} | ${quiz.points} pts | questions`}
+                  </span>
+                </div>
+                </div>
                 <span className="float-end">
                   <FaCheckCircle className="text-success" />
-                  <FaPlusCircle className="ms-2" />
                   <div className="wd-modules-header-buttons-container">
       <Dropdown className="ml-auto">
         <Dropdown.Toggle variant="secondary" id="dropdownMenuButton">

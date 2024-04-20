@@ -139,7 +139,7 @@ function DetailsEdit(){
             <div className="card-body">
               <h5>Due</h5>
               <input type="date"
-                value={quizDetails.dueDate}
+                value={quizDetails.dueDate.toString()}
                 onChange={(e) =>
                   dispatch(
                     setQuiz({ ...quizDetails, dueDate: e.target.value })
@@ -147,7 +147,7 @@ function DetailsEdit(){
                 } />
                 <h5>Available From</h5>
               <input type="date"
-                value={quizDetails.availableDate}
+                value={quizDetails.availableDate.toString()}
                 onChange={(e) =>
                   dispatch(
                     setQuiz({ ...quizDetails, availableDate: e.target.value })
@@ -155,7 +155,7 @@ function DetailsEdit(){
                 } />
                 <h5>Until</h5>
               <input type="date"
-                value={quizDetails.untilDate}
+                value={quizDetails.untilDate.toString()}
                 onChange={(e) =>
                   dispatch(
                     setQuiz({ ...quizDetails, untilDate: e.target.value })
