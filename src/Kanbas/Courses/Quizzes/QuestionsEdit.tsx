@@ -13,15 +13,15 @@ const EditQuestions = () => {
     const question = useSelector((state: KanbasState) => state.questionsReducer.question);
 
     const handleNewQuestion = async () => {
-        const res = await client.createQuestion(quizId, question);
-        dispatch(addQuestion(res.body))
+        const res = await client.createQuestion(quizId, question)
+        dispatch(addQuestion(res));
     }
 
     const handleUpdateQuestion = async () => {
         const res = await client.updateQuestion(question);
-        dispatch(addQuestion(res.body))
+        dispatch(addQuestion(res))
     }
-
+    console.log(questions);
     return (
         <div>
             <ul>
