@@ -18,9 +18,9 @@ const initialState: QuizState = {
     oneQuestionAtATime: true,
     webcamRequired: false,
     lockQuestionsAfterAnswering: false,
-    dueDate: '',
-    availableDate: '',
-    untilDate: '',
+    dueDate: new Date(),
+    availableDate: new Date(),
+    untilDate: new Date(),
     published: false,
     course: "Test", // Assuming course ID or name here
   },
