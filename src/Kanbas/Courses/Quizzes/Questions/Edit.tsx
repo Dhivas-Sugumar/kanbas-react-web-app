@@ -23,21 +23,43 @@ const EditQuestion = () => {
         <Dropdown.Item eventKey="multipleBlanks">Multiple Blanks</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
-      <label>
-        Title:
-        <input type="text" value={question.title} 
-        onChange={(e)=> dispatch(setQuestion({...question, title: e.target.value}))}/>
-      </label>
-      <label>
-        Points:
-        <input type="number" value={question.points} 
-        onChange={(e) => dispatch(setQuestion({...question, points: Number(e.target.value)}))}/>
-      </label>
-      <label>
-        Question:
-        <textarea value={question.question} 
-        onChange={(e) => dispatch(setQuestion({...question, question: e.target.value}))}/>
-      </label>  
+    <div className="question-editor">
+      <div className="form-group">
+        <label htmlFor="title">Title:</label>
+        <input
+          type="text"
+          className="form-control"
+          id="title"
+          value={question.title}
+          onChange={(e) =>
+            dispatch(setQuestion({ ...question, title: e.target.value }))
+          }
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="points">Points:</label>
+        <input
+          type="number"
+          className="form-control"
+          id="points"
+          value={question.points}
+          onChange={(e) =>
+            dispatch(setQuestion({ ...question, points: Number(e.target.value) }))
+          }
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="question">Question:</label>
+        <textarea
+          className="form-control"
+          id="question"
+          value={question.question}
+          onChange={(e) =>
+            dispatch(setQuestion({ ...question, question: e.target.value }))
+          }
+        />
+      </div>
+    </div>
       {question.questionType === "multipleChoice" && <MultipleChoiceEdit question={question} />}
       {question.questionType === "multipleBlanks" && <MultipleBlanksEdit question={question} />} 
       {question.questionType === "trueFalse" && <TrueFalseEdit question={question} />}   

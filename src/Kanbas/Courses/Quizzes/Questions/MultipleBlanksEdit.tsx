@@ -20,16 +20,23 @@ const MultipleBlanksEdit = ({question}: {question: Question}) => {
 
   return(
     <div>
-      <ul>
+      <ul className="list-group">
         {question.correctAnswers.map((answer, index) => (
-          <li key={index}>
-            <input type="text" value={answer} 
-            onChange={(e) => handleUpdateCorrectAnswer(index, e.target.value)}/>
-            <button onClick={()=> handleRemoveBlank(index)}>Remove</button>
+          <li key={index} className="list-group-item">
+            <div className="input-group">
+              <input type="text" className="form-control" value={answer} 
+                onChange={(e) => handleUpdateCorrectAnswer(index, e.target.value)} />
+              <div className="input-group-append">
+                <button className="btn btn-danger" type="button" onClick={() => handleRemoveBlank(index)}>
+                  Remove
+                </button>
+              </div>
+            </div>
           </li>
         ))}
       </ul>
-      <button className="btn btn-success" onClick={handleAddNewBlank}>Add New Blank</button>
-    </div>)
+      <button className="btn btn-success mt-3" onClick={handleAddNewBlank}>Add New Blank</button>
+    </div>
+    )
 }
 export default MultipleBlanksEdit;
