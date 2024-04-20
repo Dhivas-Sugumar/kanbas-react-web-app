@@ -6,6 +6,7 @@ import { KanbasState } from "../../store";
 import { setQuiz, setQuizById, updateQuiz } from "./reducer";
 import { Dropdown } from "react-bootstrap";
 import DetailsEdit from "./DetailsEdit";
+import EditQuestions from "./QuestionsEdit";
 function QuizEditor() {
   const { courseId, quizId } = useParams();
   // Quiz details state
@@ -61,8 +62,7 @@ function QuizEditor() {
       {/* Questions tab */}
       {activeTab === "questions" && (
         <div>
-          {/* Questions editor */}
-          <p>Questions editor goes here...</p>
+          <EditQuestions/>
         </div>
       )}
       {/* Buttons */}
