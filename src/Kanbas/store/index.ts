@@ -37,12 +37,13 @@ export interface Question {
   _id: string;
   title: string;
   points: number;
-  questionType: "Multiple Choice" | "True/False" | "Multiple Blanks";
+  questionType: "multipleChoice" | "trueFalse" | "multipleBlanks";
   question: string;
-  correctAnswer: string[];
+  correctAnswers: string[];
   choices: string[];
   quizId: string;
   quizOrder: number;
+  createdAt: string;
 }
 
 export interface ModuleState {

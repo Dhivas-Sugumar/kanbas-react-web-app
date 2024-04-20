@@ -6,7 +6,10 @@ const ChoiceDisplay = ({question} : {question: Question}) => {
       <ul>
         {question.choices.map((choice) => {
           return (
+            <div>
             <input type="radio" key={choice} name={question._id} value={choice} />
+            <label>{choice}</label>
+            </div>
           );
         })}
       </ul>

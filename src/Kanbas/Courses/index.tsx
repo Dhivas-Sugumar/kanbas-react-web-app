@@ -11,6 +11,7 @@ import QuizDetails from "./Quizzes/Details";
 import QuizEditor from "./Quizzes/Edit";
 import { useDispatch } from "react-redux";
 import { setQuizzes } from "./Quizzes/reducer";
+import PreviewQuiz from "./Quizzes/Preview";
 
 const API_BASE = process.env.REACT_APP_API_BASE;
 
@@ -54,6 +55,7 @@ function Courses({ courses }: { courses: any[]; }) {
             <Route path="Quizzes" element={<Quizzes/>} />
             <Route path="Quizzes/:quizId" element={<QuizDetails/>} />
             <Route path="Quizzes/:quizId/edit" element={<QuizEditor/>} />
+            <Route path="Quizzes/:quizId/preview" element={<PreviewQuiz/>} />
             <Route path="Piazza" element={<h1>Piazza</h1>} />
             <Route path="Assignments" element={<Assignments/>} />
             <Route path="Assignments/:assignmentId" element={<h1>Assignment Editor</h1>} />

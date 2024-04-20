@@ -7,13 +7,14 @@ const initialState: QuestionState = {
         _id: "test",
         title: "New Question",
         points: 10,
-        questionType: "Multiple Choice",
+        questionType: "multipleChoice",
         question: "New Question",
-        correctAnswer: ["New Answer"],
-        choices: ["Choice 1", "Choice 2", "Choice 3"],
+        correctAnswers: [""],
+        choices: ["Choice 1"],
         quizId: "test",
-        quizOrder: 1
-    }
+        quizOrder: 1,
+        createdAt: "2021-01-01T00:00:00.000Z"
+    },
 }
 
 const questionsSlice = createSlice({
