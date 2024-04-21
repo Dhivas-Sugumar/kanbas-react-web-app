@@ -1,16 +1,19 @@
-import { useDispatch } from "react-redux";
-import { Question } from "../../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { KanbasState, Question } from "../../../store";
 import ChoiceDisplay from "./ChoiceDisplay";
 import MultipleBlanksDisplay from "./MultipleBlanksDisplay";
 import { deleteQuestion, setQuestion } from "./reducer";
 import * as client from "./client";
+import { setQuiz } from "../reducer";
 
 const QuestionDisplay = ({question, isPreview} : {question: Question, isPreview: boolean}) => {
   const dispatch = useDispatch();
-  
+  const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
+
   const handleDelete = () => {
     client.deleteQuestion(question._id);
     dispatch(deleteQuestion(question._id));
+    dispatch(setQuiz({...quiz, numberOfQuestions: quiz.numberOfQuestions - 1, points: quiz.points - question.points}))
   }
 
   return (

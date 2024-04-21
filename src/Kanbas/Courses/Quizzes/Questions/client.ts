@@ -26,3 +26,8 @@ export const updateQuestion = async (question: any) => {
   const response = await axios.put(`${QUESTIONS_API}/${question._id}`, question);
   return response.data;
 };
+
+export const findAllQuestions = async () => {
+  const response = await axios.get(QUESTIONS_API);
+  return response.data;
+}

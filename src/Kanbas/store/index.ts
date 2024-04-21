@@ -17,6 +17,7 @@ export interface Quiz {
   description: string;
   quizType: "Graded Quiz" | "Practice Quiz" | "Graded Survey" | "Ungraded Survey";
   points: number;
+  numberOfQuestions: number;
   assignmentGroup: "Quizzes" | "Exams" | "Assignments" | "Project";
   shuffleAnswers: boolean;
   timeLimit: number;
