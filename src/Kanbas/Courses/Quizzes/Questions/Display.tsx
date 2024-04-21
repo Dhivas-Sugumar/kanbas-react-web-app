@@ -4,16 +4,19 @@ import ChoiceDisplay from "./ChoiceDisplay";
 import MultipleBlanksDisplay from "./MultipleBlanksDisplay";
 import { deleteQuestion, setQuestion } from "./reducer";
 import * as client from "./client";
-import { setQuiz } from "../reducer";
+import { setQuiz, updateQuiz } from "../reducer";
 
 const QuestionDisplay = ({question, isPreview} : {question: Question, isPreview: boolean}) => {
   const dispatch = useDispatch();
   const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
 
   const handleDelete = () => {
-    client.deleteQuestion(question._id);
-    dispatch(deleteQuestion(question._id));
-    dispatch(setQuiz({...quiz, numberOfQuestions: quiz.numberOfQuestions - 1, points: quiz.points - question.points}))
+    // client.deleteQuestion(question._id);
+    // dispatch(deleteQuestion(question._id));
+    // dispatch(setQuiz({...quiz, numberOfQuestions: quiz.numberOfQuestions - 1, points: quiz.points - question.points}))
+    // dispatch(updateQuiz({...quiz, numberOfQuestions: quiz.numberOfQuestions - 1, points: quiz.points - question.points}))
+
+    dispatch(setQuiz({...quiz, questions: quiz.questions.filter(q => q.createdAt !== question.createdAt)}))
   }
 
   return (

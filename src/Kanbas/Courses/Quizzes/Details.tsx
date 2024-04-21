@@ -47,8 +47,8 @@ function QuizDetails() {
       <h2>{quiz.title}</h2>
       {/* Display quiz properties */}
       <p><strong>Quiz Type:</strong> {quiz.quizType}</p>
-      <p><strong>Number Of Questions:</strong> {quiz.numberOfQuestions}</p>
-      <p><strong>Points:</strong> {quiz.points}</p>
+      <p><strong>Number Of Questions:</strong> {quiz.questions.reduce((acc, question) => acc + 1, 0)}</p>
+      <p><strong>Points:</strong> {quiz.questions.reduce((acc, question) => acc + question.points, 0)}</p>
       <p><strong>Assignment Group:</strong> {quiz.assignmentGroup}</p>
       <p><strong>Shuffle Answers:</strong> {quiz.shuffleAnswers ? "Yes" : "No"}</p>
       <p><strong>Time Limit:</strong> {quiz.timeLimit}</p>

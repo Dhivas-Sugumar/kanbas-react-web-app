@@ -10,6 +10,7 @@ import Editor from "react-simple-wysiwyg";
 
 const EditQuestion = () => {
     const question: Question = useSelector((state: KanbasState) => state.questionsReducer.question);
+    const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
     const dispatch = useDispatch();
     
     return (

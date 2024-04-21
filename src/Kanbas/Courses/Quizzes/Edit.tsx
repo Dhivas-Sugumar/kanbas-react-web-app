@@ -30,8 +30,9 @@ function QuizEditor() {
     // Save quiz details to the database
     // Publish quiz
     // Navigate to Quiz List screen
-    dispatch(setQuizById({ ...quizDetails, published: true }));
     handleSave();
+    dispatch(setQuizById({ ...quizDetails, published: true }));
+    
   };
 
   const handleCancel = () => {

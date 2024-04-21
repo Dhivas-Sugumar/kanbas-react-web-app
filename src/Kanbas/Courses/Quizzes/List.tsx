@@ -64,6 +64,7 @@ function QuizList() {
 
   const dispatch = useDispatch();
 
+
   return (
     <>
       <ul className="list-group wd-quizzes">
@@ -81,7 +82,7 @@ function QuizList() {
                     {quiz.title} </Link>
                 <div>
                   <span>
-                    {`${quizLineItemDateHelper(quiz)} | ${quiz.points} pts | questions`}
+                    {`${quizLineItemDateHelper(quiz)} | ${quiz.questions.reduce((acc, question) => acc + question.points, 0)} pts | questions`}
                   </span>
                 </div>
                 </div>
