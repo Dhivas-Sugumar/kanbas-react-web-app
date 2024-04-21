@@ -6,6 +6,7 @@ import MultipleChoiceEdit from "./MultipleChoiceEdit";
 import TrueFalseEdit from "./TrueFalseEdit";
 import { setQuestion } from "./reducer";
 import { Dropdown } from "react-bootstrap";
+import Editor from "react-simple-wysiwyg";
 
 const EditQuestion = () => {
     const question: Question = useSelector((state: KanbasState) => state.questionsReducer.question);
@@ -50,9 +51,7 @@ const EditQuestion = () => {
       </div>
       <div className="form-group">
         <label htmlFor="question">Question:</label>
-        <textarea
-          className="form-control"
-          id="question"
+        <Editor
           value={question.question}
           onChange={(e) =>
             dispatch(setQuestion({ ...question, question: e.target.value }))
