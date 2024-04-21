@@ -21,6 +21,8 @@ function DetailsEdit() {
 
   return (
     <div className="mt-3">
+      <h2 className="align-items-left">{`Points: ${quizDetails.questions.reduce((acc, question)=> acc + question.points, 0)}`}</h2>
+      {quizDetails.published ? <h3>Quiz is published</h3> : <h3>Quiz is not published</h3>}
       <div className="mb-3">
         <label>Title:</label>
         <input

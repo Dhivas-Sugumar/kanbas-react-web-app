@@ -5,7 +5,7 @@ import * as client from "./client";
 import { useDispatch, useSelector } from "react-redux";
 import { setQuestions } from "./Questions/reducer";
 import { Button } from "react-bootstrap";
-import { setQuizById, updateQuiz } from "./reducer";
+import { setQuiz, setQuizById, updateQuiz } from "./reducer";
 import { FaCheckCircle, FaCross, FaPenFancy, FaTimes } from "react-icons/fa";
 import { KanbasState } from "../../store";
 function QuizDetails() {
@@ -29,6 +29,7 @@ function QuizDetails() {
     const published = !quiz.published;
     await client.updateQuiz({...quiz, published: published});
     dispatch(updateQuiz({...quiz, published: published}));
+    dispatch(setQuiz({...quiz, published: published}));
   }
 
   return (
