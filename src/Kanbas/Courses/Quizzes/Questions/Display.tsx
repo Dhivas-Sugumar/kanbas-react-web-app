@@ -11,11 +11,6 @@ const QuestionDisplay = ({question, isPreview} : {question: Question, isPreview:
   const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
 
   const handleDelete = () => {
-    // client.deleteQuestion(question._id);
-    // dispatch(deleteQuestion(question._id));
-    // dispatch(setQuiz({...quiz, numberOfQuestions: quiz.numberOfQuestions - 1, points: quiz.points - question.points}))
-    // dispatch(updateQuiz({...quiz, numberOfQuestions: quiz.numberOfQuestions - 1, points: quiz.points - question.points}))
-
     dispatch(setQuiz({...quiz, questions: quiz.questions.filter(q => q.createdAt !== question.createdAt)}))
   }
 

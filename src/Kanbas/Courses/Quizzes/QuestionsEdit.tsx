@@ -3,44 +3,25 @@ import { KanbasState } from "../../store";
 import QuestionDisplay from "./Questions/Display";
 import EditQuestion from "./Questions/Edit";
 import { addQuestion, setQuestion, updateQuestion } from "./Questions/reducer";
-import * as client from "./client";
 import { useParams } from "react-router";
 import { Button } from "react-bootstrap";
 import { setQuiz, updateQuiz } from "./reducer";
+import { create } from "domain";
 
 const EditQuestions = () => {
     const {quizId} = useParams();
     const dispatch = useDispatch();
-    // const questions = useSelector((state: KanbasState) => state.questionsReducer.questions);
     const question = useSelector((state: KanbasState) => state.questionsReducer.question);
     const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
 
-    const handleNewQuestion = async () => {
-        // const res = await client.createQuestion(quizId, question)
-        // dispatch(addQuestion(res));
-        // console.log(pointsSum())
-        // dispatch(setQuiz({...quiz, numberOfQuestions: quiz.numberOfQuestions + 1, points: quiz.points + question.points}))
-        // dispatch(updateQuiz({...quiz, numberOfQuestions: quiz.numberOfQuestions + 1, points: quiz.points + question.points}))
+    const handleNewQuestion = () => {
         dispatch(setQuiz({...quiz, questions: [...quiz.questions, {...question, createdAt: new Date().toISOString()}]}))
-        dispatch(setQuestion({title: "", question: "", questionType: "multipleChoice", points: 0, choices: [], blanks: []}))
+        dispatch(setQuestion({title: "", question: "", questionType: "multipleChoice", points: 0, choices: [], blanks: [], createdAt: ''}))
     }
 
-    // const pointsSum = () => {
-    //     let sum = 0;
-    //     questions.forEach(question => {
-    //         sum += question.points;
-    //     });
-    //     return sum;
-    // }
-
-
-
-    const handleUpdateQuestion = async () => {
-        // const res = await client.updateQuestion(question);
-        // dispatch(updateQuestion(question))
-        // dispatch(setQuiz({...quiz, points: pointsSum()}))
-        // dispatch(updateQuiz({...quiz, points: pointsSum()}))
+    const handleUpdateQuestion = () => {
         dispatch(setQuiz({...quiz, questions: quiz.questions.map(q => q.createdAt === question.createdAt ? question : q)}))
+        dispatch(setQuestion({title: "", question: "", questionType: "multipleChoice", points: 0, choices: [], blanks: [], createdAt: ''}))
     }
     
     return (
@@ -54,6 +35,7 @@ const EditQuestions = () => {
             </ul>
             <EditQuestion/>
             <Button className="btn btn-success my-2" onClick={handleNewQuestion}>New Question</Button>
+            <Button className="btn btn-primary my-2" onClick={handleUpdateQuestion} disabled={question.createdAt === ''}>Update Question</Button>
         </div>
     );
 }
