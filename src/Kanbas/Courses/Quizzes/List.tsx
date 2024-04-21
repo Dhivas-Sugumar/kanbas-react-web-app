@@ -45,8 +45,7 @@ function QuizList() {
   }
 
   const handleEditQuiz = () => {
-    // Navigate to Quiz Details screen
-    
+    navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}/edit`);
   }
 
   const quizLineItemDateHelper = (quiz: Quiz) => {
@@ -95,7 +94,7 @@ function QuizList() {
         <Dropdown.Menu>
           <Dropdown.Item onClick={handleEditQuiz}>Edit</Dropdown.Item>
           <Dropdown.Item onClick={() => {handleDeleteQuiz(quiz._id)}}>Delete</Dropdown.Item>
-          <Dropdown.Item onClick={() => {handlePublishQuiz(quiz)}}>{quiz.published}</Dropdown.Item>
+          <Dropdown.Item onClick={() => {handlePublishQuiz(quiz)}}>{quiz.published ? "UnPublish" : "Publish"}</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </div>
