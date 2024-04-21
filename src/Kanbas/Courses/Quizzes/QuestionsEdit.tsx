@@ -33,7 +33,14 @@ const EditQuestions = () => {
                     </li>
                 ))}
             </ul>
-            <EditQuestion/>
+            <div className="card mt-2" style={{marginRight: '200px'}}>
+                <div className='card-header'>
+                    <h3>New Question</h3>
+                </div>
+                <div className='card-body'>
+                <EditQuestion/>
+                </div>
+            </div>
             <Button className="btn btn-success my-2" onClick={handleNewQuestion}>New Question</Button>
             <Button className="btn btn-primary my-2" onClick={handleUpdateQuestion} disabled={question.createdAt === ''}>Update Question</Button>
         </div>

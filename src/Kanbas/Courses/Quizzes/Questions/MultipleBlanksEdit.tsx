@@ -1,10 +1,17 @@
-import { useDispatch } from "react-redux";
-import { Question } from "../../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { KanbasState, Question } from "../../../store";
 import { setQuestion } from "./reducer";
+import { useEffect } from "react";
 
-const MultipleBlanksEdit = ({question}: {question: Question}) => {
+const MultipleBlanksEdit = () => {
 
+  const question = useSelector((state: KanbasState) => state.questionsReducer.question);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setQuestion({ ...question, type: "multipleBlanks", correctAnswers: [], choices: [] }));
+  }, [])
+
   const handleAddNewBlank = () => {
     dispatch(setQuestion({...question, choices: [...question.choices, ""], correctAnswers: [...question.correctAnswers, ""]}));
   }
