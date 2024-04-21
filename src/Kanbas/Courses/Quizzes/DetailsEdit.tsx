@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setQuiz } from "./reducer";
 import { Dropdown } from "react-bootstrap";
 import { KanbasState } from "../../store";
+import Editor from 'react-simple-wysiwyg';
 
 function DetailsEdit() {
 
@@ -32,13 +33,13 @@ function DetailsEdit() {
       </div>
       <div className="mb-3">
         <label className="quiz-description-lable">Quiz instructions</label>
-        <textarea className="quiz-description-textarea"
-          value={quizDetails.description}
-          onChange={(e) =>
-            dispatch(
-              setQuiz({ ...quizDetails, description: e.target.value })
-            )
-          } />
+        <Editor   className="quiz-description-textarea"         
+        value={quizDetails.description}
+        onChange={(e) =>
+          dispatch(
+            setQuiz({ ...quizDetails, description: e.target.value })
+          )
+        }/>
       </div>
 
       <div className="row align-items-center mb-3">
