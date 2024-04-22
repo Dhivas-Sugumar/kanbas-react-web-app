@@ -63,6 +63,7 @@ function QuizList() {
 
   const dispatch = useDispatch();
 
+
   return (
     <>
       <ul className="list-group wd-quizzes">
@@ -80,12 +81,12 @@ function QuizList() {
                     {quiz.title} </Link>
                 <div>
                   <span>
-                    {`${quizLineItemDateHelper(quiz)} | ${quiz.points} pts | questions`}
+                    {`${quizLineItemDateHelper(quiz)} | ${quiz.questions.reduce((acc, question) => acc + question.points, 0)} pts | ${quiz.questions.length} questions`}
                   </span>
                 </div>
                 </div>
                 <span className="float-end">
-                  {isQuizAvailable ? <FaCheckCircle className="text-success" /> : <FaTimesCircle />}
+                  {quiz.published ? <FaCheckCircle className="text-success" /> : <FaTimesCircle />}
                   <div className="wd-modules-header-buttons-container">
       <Dropdown className="ml-auto">
         <Dropdown.Toggle variant="secondary" id="dropdownMenuButton">

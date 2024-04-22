@@ -16,8 +16,6 @@ export interface Quiz {
   title: string;
   description: string;
   quizType: "Graded Quiz" | "Practice Quiz" | "Graded Survey" | "Ungraded Survey";
-  points: number;
-  numberOfQuestions: number;
   assignmentGroup: "Quizzes" | "Exams" | "Assignments" | "Project";
   shuffleAnswers: boolean;
   timeLimit: number;
@@ -32,18 +30,16 @@ export interface Quiz {
   untilDate: Date;
   course: string; // Assuming course ID or name here
   published: boolean;
+  questions: Question[];
 }
 
 export interface Question {
-  _id: string;
   title: string;
   points: number;
   questionType: "multipleChoice" | "trueFalse" | "multipleBlanks";
   question: string;
   correctAnswers: string[];
   choices: string[];
-  quizId: string;
-  quizOrder: number;
   createdAt: string;
 }
 

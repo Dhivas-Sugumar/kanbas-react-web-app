@@ -10,11 +10,13 @@ import Editor from "react-simple-wysiwyg";
 
 const EditQuestion = () => {
     const question: Question = useSelector((state: KanbasState) => state.questionsReducer.question);
+    const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
     const dispatch = useDispatch();
     
     return (
         <div>
-              <Dropdown onSelect={(e) => dispatch(setQuestion({...question, questionType: e, correctAnswer: [], choices: []}))}>
+          <div>Question Type:</div>
+              <Dropdown onSelect={(e) => dispatch(setQuestion({...question, questionType: e, correctAnswers: [], choices: []}))}>
       <Dropdown.Toggle variant="primary" id="quiz-type-dropdown">
         {question.questionType ? question.questionType : 'Select Quiz Type'}
       </Dropdown.Toggle>
@@ -59,9 +61,9 @@ const EditQuestion = () => {
         />
       </div>
     </div>
-      {question.questionType === "multipleChoice" && <MultipleChoiceEdit question={question} />}
-      {question.questionType === "multipleBlanks" && <MultipleBlanksEdit question={question} />} 
-      {question.questionType === "trueFalse" && <TrueFalseEdit question={question} />}   
+      {question.questionType === "multipleChoice" && <MultipleChoiceEdit />}
+      {question.questionType === "multipleBlanks" && <MultipleBlanksEdit />} 
+      {question.questionType === "trueFalse" && <TrueFalseEdit/>}   
       </div>
     );
 }

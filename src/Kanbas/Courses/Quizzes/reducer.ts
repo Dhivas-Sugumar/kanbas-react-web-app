@@ -8,8 +8,6 @@ const initialState: QuizState = {
     title: "New Quiz",
     description: "New Description",
     quizType: "Graded Quiz",
-    points: 0,
-    numberOfQuestions: 0,
     assignmentGroup: "Quizzes",
     shuffleAnswers: true,
     timeLimit: 20,
@@ -24,6 +22,7 @@ const initialState: QuizState = {
     untilDate: new Date(),
     published: false,
     course: "Test", // Assuming course ID or name here
+    questions: [],
   },
 };
 

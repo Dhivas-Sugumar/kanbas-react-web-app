@@ -5,12 +5,16 @@ import { KanbasState } from '../../store';
 import * as client from './Questions/client';
 import { setQuestions } from './Questions/reducer';
 import QuestionDisplay from './Questions/Display';
+import { setQuizById } from './reducer';
 
 const PreviewQuiz = () => {
   const { quizId } = useParams();
   const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
   const dispatch = useDispatch();
-  const questions = useSelector((state: KanbasState) => state.questionsReducer.questions);
+
+  useEffect(() => {
+    dispatch(setQuizById(quizId));
+  }, [quizId]);
 
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [isOneQuestionAtATime, setIsOneQuestionAtATime] = useState<boolean>(false);
@@ -26,7 +30,7 @@ const PreviewQuiz = () => {
     return array;
 }
 
-const displayQuestions = quiz.shuffleAnswers ? shuffleArray(questions) : questions;
+const displayQuestions = quiz.shuffleAnswers ? shuffleArray(quiz.questions) : quiz.questions;
 
   useEffect(() => {
     setIsOneQuestionAtATime(quiz.oneQuestionAtATime);
@@ -41,7 +45,7 @@ const displayQuestions = quiz.shuffleAnswers ? shuffleArray(questions) : questio
   };
 
   if(!quiz) return null;  
-  if(questions.length === 0) return null;
+  if(quiz.questions.length === 0) return null;
 
   return (
     <div>
@@ -49,11 +53,11 @@ const displayQuestions = quiz.shuffleAnswers ? shuffleArray(questions) : questio
       {isOneQuestionAtATime ? (
         <div>
           <h3>{displayQuestions[currentQuestion]?.title}</h3>
-          <QuestionDisplay question={questions[currentQuestion]} isPreview={true}/>
+          <QuestionDisplay question={quiz.questions[currentQuestion]} isPreview={true}/>
           <button onClick={handlePreviousQuestion} disabled={currentQuestion === 0}>
             Previous
           </button>
-          <button onClick={handleNextQuestion} disabled={currentQuestion === questions.length - 1}>
+          <button onClick={handleNextQuestion} disabled={currentQuestion === quiz.questions.length - 1}>
             Next
           </button>
         </div>
