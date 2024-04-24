@@ -30,6 +30,7 @@ function QuizEditor() {
     // Save quiz details to the database
     // Publish quiz
     // Navigate to Quiz List screen
+    
     dispatch(setQuizById({ ...quizDetails, published: true }));
     handleSave();
   };
@@ -64,7 +65,7 @@ function QuizEditor() {
       <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`}>
         <Button className="mx-2" onClick={handleSaveAndPublish}>Save & Publish</Button>
       </Link>
-      <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`}>
+      <Link to={`/Kanbas/Courses/${courseId}/Quizzes/`}>
         <Button className="mx-2" onClick={handleCancel}>Cancel</Button>
       </Link>
     </div>

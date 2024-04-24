@@ -6,14 +6,17 @@ import MultipleChoiceEdit from "./MultipleChoiceEdit";
 import TrueFalseEdit from "./TrueFalseEdit";
 import { setQuestion } from "./reducer";
 import { Dropdown } from "react-bootstrap";
+import Editor from "react-simple-wysiwyg";
 
 const EditQuestion = () => {
     const question: Question = useSelector((state: KanbasState) => state.questionsReducer.question);
+    const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
     const dispatch = useDispatch();
     
     return (
         <div>
-              <Dropdown onSelect={(e) => dispatch(setQuestion({...question, questionType: e, correctAnswer: [], choices: []}))}>
+          <div>Question Type:</div>
+              <Dropdown onSelect={(e) => dispatch(setQuestion({...question, questionType: e, correctAnswers: [], choices: []}))}>
       <Dropdown.Toggle variant="primary" id="quiz-type-dropdown">
         {question.questionType ? question.questionType : 'Select Quiz Type'}
       </Dropdown.Toggle>
@@ -50,9 +53,7 @@ const EditQuestion = () => {
       </div>
       <div className="form-group">
         <label htmlFor="question">Question:</label>
-        <textarea
-          className="form-control"
-          id="question"
+        <Editor
           value={question.question}
           onChange={(e) =>
             dispatch(setQuestion({ ...question, question: e.target.value }))
@@ -60,9 +61,9 @@ const EditQuestion = () => {
         />
       </div>
     </div>
-      {question.questionType === "multipleChoice" && <MultipleChoiceEdit question={question} />}
-      {question.questionType === "multipleBlanks" && <MultipleBlanksEdit question={question} />} 
-      {question.questionType === "trueFalse" && <TrueFalseEdit question={question} />}   
+      {question.questionType === "multipleChoice" && <MultipleChoiceEdit />}
+      {question.questionType === "multipleBlanks" && <MultipleBlanksEdit />} 
+      {question.questionType === "trueFalse" && <TrueFalseEdit/>}   
       </div>
     );
 }

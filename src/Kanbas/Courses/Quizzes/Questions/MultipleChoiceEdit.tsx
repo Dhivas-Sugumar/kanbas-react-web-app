@@ -1,10 +1,16 @@
-import { useDispatch } from "react-redux";
-import { Question } from "../../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { KanbasState, Question } from "../../../store";
 import { setQuestion } from "./reducer";
+import { useEffect } from "react";
 
-const MultipleChoiceEdit = ({question}: {question: Question}) => {
+const MultipleChoiceEdit = () => {
 
+  const question = useSelector((state: KanbasState) => state.questionsReducer.question);
   const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(setQuestion({ ...question, type: "multipleChoice", correctAnswers: [""], choices: [""] }));
+  }, [])
 
   const handleAddNewChoice = () => {
     dispatch(setQuestion({...question, choices: [...question.choices, ""]}));

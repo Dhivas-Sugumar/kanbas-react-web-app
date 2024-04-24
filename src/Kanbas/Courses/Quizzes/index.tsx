@@ -33,7 +33,7 @@ export const QuizzesHeaderButtons = () => {
   const quizDetails = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
 
   const handleAddQuiz = () => {
-    client.createQuiz(courseId,quizDetails).then((quiz) => {
+    client.createQuiz(courseId,{...quizDetails, title: "New Quiz", questions: []}).then((quiz) => {
       dispatch(addQuiz(quiz));
       navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}/edit`);
     });

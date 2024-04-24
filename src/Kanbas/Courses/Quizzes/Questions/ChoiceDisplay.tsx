@@ -9,8 +9,8 @@ const ChoiceDisplay = ({question}: {question: Question}) => {
           <div key={choice} className="mb-3">
             <Form.Check
               type="radio"
-              id={`${question._id}-${choice}`}
-              name={question._id}
+              id={`${question.createdAt}-${choice}`}
+              name={question.title}
               value={choice}
               label={choice}
             />

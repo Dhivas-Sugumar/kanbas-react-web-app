@@ -5,7 +5,7 @@ import * as client from "./client";
 import { useDispatch, useSelector } from "react-redux";
 import { setQuestions } from "./Questions/reducer";
 import { Button } from "react-bootstrap";
-import { setQuizById, updateQuiz } from "./reducer";
+import { setQuiz, setQuizById, updateQuiz } from "./reducer";
 import { FaCheckCircle, FaCross, FaPenFancy, FaTimes } from "react-icons/fa";
 import { KanbasState } from "../../store";
 function QuizDetails() {
@@ -29,6 +29,7 @@ function QuizDetails() {
     const published = !quiz.published;
     await client.updateQuiz({...quiz, published: published});
     dispatch(updateQuiz({...quiz, published: published}));
+    dispatch(setQuiz({...quiz, published: published}));
   }
 
   return (
@@ -47,7 +48,8 @@ function QuizDetails() {
       <h2>{quiz.title}</h2>
       {/* Display quiz properties */}
       <p><strong>Quiz Type:</strong> {quiz.quizType}</p>
-      <p><strong>Points:</strong> {quiz.points}</p>
+      <p><strong>Number Of Questions:</strong> {quiz.questions.reduce((acc, question) => acc + 1, 0)}</p>
+      <p><strong>Points:</strong> {quiz.questions.reduce((acc, question) => acc + question.points, 0)}</p>
       <p><strong>Assignment Group:</strong> {quiz.assignmentGroup}</p>
       <p><strong>Shuffle Answers:</strong> {quiz.shuffleAnswers ? "Yes" : "No"}</p>
       <p><strong>Time Limit:</strong> {quiz.timeLimit}</p>

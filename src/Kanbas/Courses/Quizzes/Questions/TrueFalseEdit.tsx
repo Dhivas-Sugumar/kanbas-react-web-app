@@ -4,10 +4,11 @@ import { useParams } from "react-router";
 import { setQuestion } from "./reducer";
 import { useEffect } from "react";
 
-const TrueFalseEdit = ({ question }: { question: Question }) => {
+const TrueFalseEdit = () => {
     const { quizId } = useParams();
     const dispatch = useDispatch();
 
+    const question = useSelector((state: KanbasState) => state.questionsReducer.question);
     useEffect(() => {
         dispatch(setQuestion({ ...question, type: "trueFalse", correctAnswers: [""], choices: ["True", "False"] }));
     }, [quizId])
@@ -23,6 +24,7 @@ const TrueFalseEdit = ({ question }: { question: Question }) => {
       
     return (
         <div>
+          <h4>The correct answer to this question is:</h4>
       <div className="form-check">
         <input
           type="radio"
